@@ -133,15 +133,8 @@ input {
 
 .shared-note-box {
   margin-top: 0.7rem;
-  padding: 0.55rem 0.65rem;
-  border-radius: 8px;
-  background: #151b33;
-}
-
-.shared-note-label {
-  margin: 0 0 0.3rem;
-  color: var(--muted);
-  font-size: 0.82rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .shared-note {
