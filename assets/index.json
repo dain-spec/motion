@@ -20,6 +20,16 @@
       "tags": ["loader", "dot", "lottie"],
       "updatedAt": "2026-05-07",
       "note": "도트 로더 모션"
+    },
+    {
+      "id": "loader-dot-answer",
+      "type": "json",
+      "title": "Loader Dot Answer",
+      "path": "./assets/json/loader_dot_answer.json",
+      "thumbnail": "",
+      "tags": ["loader", "dot", "answer", "lottie"],
+      "updatedAt": "2026-05-07",
+      "note": "답변용 도트 로더 모션"
     }
   ]
 }
