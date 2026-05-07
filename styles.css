@@ -140,7 +140,7 @@ input {
 .shared-note {
   margin: 0;
   white-space: pre-wrap;
-  font-size: 0.86rem;
+  font-size: 11px;
 }
 
 .card-actions {
