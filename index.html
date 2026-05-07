@@ -3,6 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var pathname = window.location.pathname.replace(/\/index\.html?$/i, "");
+        if (pathname.slice(-1) !== "/") {
+          pathname += "/";
+        }
+        var baseEl = document.createElement("base");
+        baseEl.href = window.location.origin + pathname;
+        var anchor = document.currentScript;
+        anchor.parentNode.insertBefore(baseEl, anchor.nextSibling);
+      })();
+    </script>
     <title>Motion Asset Share</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>

@@ -1,4 +1,6 @@
-const ASSET_INDEX_PATH = "./assets/index.json";
+function resolveSiteUrl(relativePath) {
+  return new URL(relativePath, document.baseURI).href;
+}
 
 const state = {
   assets: [],
@@ -33,7 +35,7 @@ async function init() {
 async function loadAssetIndex() {
   let response;
   try {
-    response = await fetch(ASSET_INDEX_PATH);
+    response = await fetch(resolveSiteUrl("./assets/index.json"));
   } catch (error) {
     if (window.location.protocol === "file:") {
       throw new Error("파일을 직접 열면 불러올 수 없습니다. 로컬 서버(http://localhost)로 실행해주세요.");
@@ -87,7 +89,7 @@ function renderAssets() {
     fragment.querySelector(".shared-note").textContent = asset.note || "등록된 팀 메모가 없습니다.";
 
     const openLink = fragment.querySelector(".open-link");
-    openLink.href = asset.path;
+    openLink.href = resolveSiteUrl(asset.path);
 
     const tagList = fragment.querySelector(".tag-list");
     (asset.tags || []).forEach((tag) => {
@@ -111,7 +113,7 @@ function renderPreview(asset, container) {
         renderer: "svg",
         loop: true,
         autoplay: true,
-        path: asset.path,
+        path: resolveSiteUrl(asset.path),
       });
     } catch {
       container.innerHTML = '<p class="preview-error">JSON 미리보기 실패</p>';
@@ -121,7 +123,7 @@ function renderPreview(asset, container) {
 
   if (asset.type === "apng") {
     const img = document.createElement("img");
-    img.src = asset.path;
+    img.src = resolveSiteUrl(asset.path);
     img.alt = asset.title;
     img.loading = "lazy";
     img.onerror = () => {
