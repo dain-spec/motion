@@ -77,6 +77,33 @@ input {
   background: var(--panel);
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
+}
+
+.download-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.asset-card:hover .download-overlay,
+.asset-card:focus-within .download-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.download-overlay:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -4px;
 }
 
 .preview-area {
@@ -146,16 +173,6 @@ input {
   margin: 0;
   white-space: pre-wrap;
   font-size: 11px;
-}
-
-.card-actions {
-  margin-top: 0.7rem;
-}
-
-.open-link {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.9rem;
 }
 
 .empty-state {

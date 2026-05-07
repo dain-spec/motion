@@ -99,9 +99,11 @@ function renderAssets() {
     setTextIfExists(fragment, ".asset-type", asset.type.toUpperCase());
     setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
 
-    const openLink = fragment.querySelector(".open-link");
-    if (openLink) {
-      openLink.href = resolveSiteUrl(asset.path);
+    const downloadHref = resolveSiteUrl(asset.path);
+    const downloadOverlay = fragment.querySelector(".download-overlay");
+    if (downloadOverlay) {
+      downloadOverlay.href = downloadHref;
+      downloadOverlay.setAttribute("download", "");
     }
 
     const tagList = fragment.querySelector(".tag-list");
