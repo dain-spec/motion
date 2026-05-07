@@ -88,13 +88,8 @@ function renderAssets() {
     fragment.querySelector(".asset-meta").textContent = `업데이트: ${asset.updatedAt || "-"}`;
     fragment.querySelector(".shared-note").textContent = asset.note || "등록된 팀 메모가 없습니다.";
 
-    const previewUrlHref = resolveSiteUrl(asset.path);
     const openLink = fragment.querySelector(".open-link");
-    openLink.href = previewUrlHref;
-
-    const previewUrlLink = fragment.querySelector(".preview-url-link");
-    previewUrlLink.href = previewUrlHref;
-    previewUrlLink.textContent = previewUrlHref;
+    openLink.href = resolveSiteUrl(asset.path);
 
     const tagList = fragment.querySelector(".tag-list");
     (asset.tags || []).forEach((tag) => {
