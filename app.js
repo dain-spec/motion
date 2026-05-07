@@ -85,7 +85,6 @@ function renderAssets() {
 
     fragment.querySelector(".asset-title").textContent = asset.title;
     fragment.querySelector(".asset-type").textContent = asset.type.toUpperCase();
-    fragment.querySelector(".asset-meta").textContent = `업데이트: ${asset.updatedAt || "-"}`;
     fragment.querySelector(".shared-note").textContent = asset.note || "등록된 팀 메모가 없습니다.";
 
     const openLink = fragment.querySelector(".open-link");

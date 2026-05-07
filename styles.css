@@ -70,16 +70,16 @@ input {
 
 .asset-card {
   background: var(--panel);
-  border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
 }
 
 .preview-area {
   height: 220px;
+  padding: 20px;
   display: grid;
   place-items: center;
-  background: #11162d;
+  background: #212121;
 }
 
 .preview-area img {
@@ -116,12 +116,6 @@ input {
   font-size: 0.75rem;
 }
 
-.asset-meta {
-  margin: 0.5rem 0;
-  color: var(--muted);
-  font-size: 0.87rem;
-}
-
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -139,7 +133,6 @@ input {
   margin-top: 0.7rem;
   padding: 0.55rem 0.65rem;
   border-radius: 8px;
-  border: 1px solid var(--line);
   background: #151b33;
 }
 
