@@ -31,9 +31,18 @@ async function init() {
 }
 
 async function loadAssetIndex() {
-  const response = await fetch(ASSET_INDEX_PATH);
+  let response;
+  try {
+    response = await fetch(ASSET_INDEX_PATH);
+  } catch (error) {
+    if (window.location.protocol === "file:") {
+      throw new Error("파일을 직접 열면 불러올 수 없습니다. 로컬 서버(http://localhost)로 실행해주세요.");
+    }
+    throw new Error(`assets/index.json 요청 실패: ${error.message}`);
+  }
+
   if (!response.ok) {
-    throw new Error("assets/index.json 파일을 불러올 수 없습니다.");
+    throw new Error(`assets/index.json 파일을 불러올 수 없습니다. (HTTP ${response.status})`);
   }
 
   const json = await response.json();
