@@ -24,8 +24,13 @@ const elements = {
 };
 
 init().catch((error) => {
-  elements.empty.classList.remove("hidden");
-  elements.empty.textContent = `로드 실패: ${error.message}`;
+  if (elements.empty) {
+    elements.empty.classList.remove("hidden");
+    elements.empty.textContent = `로드 실패: ${error.message}`;
+  } else {
+    // Fallback for temporary HTML/JS cache mismatch states.
+    console.error("로드 실패:", error);
+  }
 });
 
 async function init() {
