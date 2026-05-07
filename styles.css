@@ -21,6 +21,11 @@ body {
   color: var(--text);
 }
 
+h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
