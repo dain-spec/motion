@@ -10,7 +10,16 @@
       "tags": ["sample", "loader", "lottie"],
       "updatedAt": "2026-04-22",
       "note": "경로 표시"
+    },
+    {
+      "id": "loader-dot",
+      "type": "json",
+      "title": "Loader Dot",
+      "path": "./assets/json/loader_dot.json",
+      "thumbnail": "",
+      "tags": ["loader", "dot", "lottie"],
+      "updatedAt": "2026-05-07",
+      "note": "도트 로더 모션"
     }
-    
   ]
 }
