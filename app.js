@@ -2,6 +2,13 @@ function resolveSiteUrl(relativePath) {
   return new URL(relativePath, document.baseURI).href;
 }
 
+function setTextIfExists(root, selector, value) {
+  const el = root.querySelector(selector);
+  if (el) {
+    el.textContent = value;
+  }
+}
+
 const state = {
   assets: [],
   filteredAssets: [],
@@ -83,12 +90,14 @@ function renderAssets() {
     const card = fragment.querySelector(".asset-card");
     const preview = fragment.querySelector(".preview-area");
 
-    fragment.querySelector(".asset-title").textContent = asset.title;
-    fragment.querySelector(".asset-type").textContent = asset.type.toUpperCase();
-    fragment.querySelector(".shared-note").textContent = asset.note || "등록된 팀 메모가 없습니다.";
+    setTextIfExists(fragment, ".asset-title", asset.title);
+    setTextIfExists(fragment, ".asset-type", asset.type.toUpperCase());
+    setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
 
     const openLink = fragment.querySelector(".open-link");
-    openLink.href = resolveSiteUrl(asset.path);
+    if (openLink) {
+      openLink.href = resolveSiteUrl(asset.path);
+    }
 
     const tagList = fragment.querySelector(".tag-list");
     (asset.tags || []).forEach((tag) => {
@@ -98,8 +107,12 @@ function renderAssets() {
       tagList.appendChild(span);
     });
 
-    renderPreview(asset, preview);
-    card.dataset.id = asset.id;
+    if (preview) {
+      renderPreview(asset, preview);
+    }
+    if (card) {
+      card.dataset.id = asset.id;
+    }
     elements.grid.appendChild(fragment);
   });
 }
