@@ -27,7 +27,6 @@ body {
   gap: 1rem;
   align-items: center;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--line);
 }
 
 .repo-link {
