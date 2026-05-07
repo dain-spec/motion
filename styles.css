@@ -156,6 +156,34 @@ input {
   font-size: 0.86rem;
 }
 
+.preview-url-box {
+  margin-top: 0.65rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  border: 1px dashed var(--line);
+  background: rgba(17, 22, 45, 0.45);
+}
+
+.preview-url-label {
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.79rem;
+}
+
+.preview-url-link {
+  display: block;
+  word-break: break-all;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  text-decoration: none;
+  line-height: 1.45;
+}
+
+.preview-url-link:hover {
+  text-decoration: underline;
+}
+
 .card-actions {
   margin-top: 0.7rem;
 }
