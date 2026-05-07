@@ -136,10 +136,6 @@ input {
   font-size: 0.75rem;
 }
 
-.memo-box {
-  margin-top: 0.7rem;
-}
-
 .shared-note-box {
   margin-top: 0.7rem;
   padding: 0.55rem 0.65rem;
@@ -158,41 +154,6 @@ input {
   margin: 0;
   white-space: pre-wrap;
   font-size: 0.86rem;
-}
-
-.memo-label {
-  display: block;
-  margin-bottom: 0.35rem;
-  color: var(--muted);
-  font-size: 0.82rem;
-}
-
-.memo-input {
-  width: 100%;
-  resize: vertical;
-  min-height: 70px;
-}
-
-.memo-actions {
-  margin-top: 0.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.memo-save {
-  border: 1px solid var(--line);
-  background: var(--chip);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 0.35rem 0.6rem;
-  font-size: 0.82rem;
-  cursor: pointer;
-}
-
-.memo-status {
-  color: var(--muted);
-  font-size: 0.78rem;
 }
 
 .card-actions {

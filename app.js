@@ -1,5 +1,4 @@
 const ASSET_INDEX_PATH = "./assets/index.json";
-const MEMO_STORAGE_KEY = "asset-notes-v1";
 
 const state = {
   assets: [],
@@ -89,20 +88,6 @@ function renderAssets() {
       tagList.appendChild(span);
     });
 
-    const memoInput = fragment.querySelector(".memo-input");
-    const memoSave = fragment.querySelector(".memo-save");
-    const memoStatus = fragment.querySelector(".memo-status");
-    const savedMemo = getMemo(asset.id);
-    memoInput.value = savedMemo;
-
-    memoSave.addEventListener("click", () => {
-      saveMemo(asset.id, memoInput.value);
-      memoStatus.textContent = "저장됨";
-      setTimeout(() => {
-        memoStatus.textContent = "";
-      }, 1200);
-    });
-
     renderPreview(asset, preview);
     card.dataset.id = asset.id;
     elements.grid.appendChild(fragment);
@@ -138,29 +123,4 @@ function renderPreview(asset, container) {
   }
 
   container.innerHTML = '<p class="preview-error">지원하지 않는 타입</p>';
-}
-
-function getAllMemos() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(MEMO_STORAGE_KEY) || "{}");
-    return typeof parsed === "object" && parsed ? parsed : {};
-  } catch {
-    return {};
-  }
-}
-
-function getMemo(assetId) {
-  const memos = getAllMemos();
-  return memos[assetId] || "";
-}
-
-function saveMemo(assetId, memo) {
-  const memos = getAllMemos();
-  const trimmed = memo.trim();
-  if (trimmed) {
-    memos[assetId] = trimmed;
-  } else {
-    delete memos[assetId];
-  }
-  localStorage.setItem(MEMO_STORAGE_KEY, JSON.stringify(memos));
 }
