@@ -59,6 +59,12 @@ input {
 
 #searchInput {
   background: #212121;
+  border: none;
+}
+
+#typeFilter {
+  background: #212121;
+  border: none;
 }
 
 .asset-grid {
