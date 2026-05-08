@@ -40,6 +40,16 @@
       "tags": ["loading", "circle", "lottie"],
       "updatedAt": "2026-05-08",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+    },
+    {
+      "id": "logo-wehago",
+      "type": "json",
+      "title": "WEHAGO Logo",
+      "path": "./assets/json/logo_wehago.json",
+      "thumbnail": "",
+      "tags": ["logo", "wehago", "lottie"],
+      "updatedAt": "2026-05-08",
+      "note": "WEHAGO 로고 모션"
     }
   ]
 }
