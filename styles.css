@@ -38,6 +38,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   min-height: 36px;
   padding: 0 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -46,6 +47,13 @@ h1 {
   color: #fff;
   text-decoration: none;
   font-size: 14px;
+}
+
+.repo-link-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 .repo-link:hover,
