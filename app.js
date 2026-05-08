@@ -12,6 +12,7 @@ function setTextIfExists(root, selector, value) {
 const state = {
   assets: [],
   filteredAssets: [],
+  selectedCategory: "loader",
 };
 
 const elements = {
@@ -19,6 +20,7 @@ const elements = {
   empty: document.getElementById("emptyState"),
   search: document.getElementById("searchInput"),
   typeFilter: document.getElementById("typeFilter"),
+  categoryTabs: Array.from(document.querySelectorAll(".category-tab")),
   template: document.getElementById("assetCardTemplate"),
   repoLink: document.getElementById("repoLink"),
 };
@@ -40,8 +42,26 @@ async function init() {
 
   elements.search.addEventListener("input", applyFilters);
   elements.typeFilter.addEventListener("change", applyFilters);
+  elements.categoryTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      state.selectedCategory = tab.dataset.category || "loader";
+      elements.categoryTabs.forEach((btn) => {
+        btn.classList.toggle("active", btn === tab);
+      });
+      applyFilters();
+    });
+  });
 
   applyFilters();
+}
+
+function matchesCategory(asset) {
+  const selected = state.selectedCategory;
+  const keywords = `${asset.id || ""} ${asset.title || ""} ${(asset.tags || []).join(" ")}`.toLowerCase();
+  if (selected === "icon") {
+    return keywords.includes("icon");
+  }
+  return keywords.includes("loader") || keywords.includes("loading");
 }
 
 async function loadAssetIndex() {
@@ -72,10 +92,11 @@ function applyFilters() {
   const selectedType = elements.typeFilter.value;
 
   state.filteredAssets = state.assets.filter((asset) => {
+    const matchesCategoryTab = matchesCategory(asset);
     const matchesType = selectedType === "all" || asset.type === selectedType;
     const haystack = `${asset.title} ${(asset.tags || []).join(" ")} ${asset.note || ""}`.toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
-    return matchesType && matchesQuery;
+    return matchesCategoryTab && matchesType && matchesQuery;
   });
 
   renderAssets();
