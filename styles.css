@@ -141,7 +141,7 @@ input {
 
 .preview-area {
   height: 220px;
-  padding: 20px;
+  padding: 30px;
   display: grid;
   place-items: center;
   background: #212121;
