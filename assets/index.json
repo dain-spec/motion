@@ -30,6 +30,16 @@
       "tags": ["loader", "dot", "answer", "lottie"],
       "updatedAt": "2026-05-07",
       "note": "답변용 도트 로더 모션"
+    },
+    {
+      "id": "loading-circle",
+      "type": "json",
+      "title": "Loading Circle",
+      "path": "./assets/json/loading_circle.json",
+      "thumbnail": "",
+      "tags": ["loading", "circle", "lottie"],
+      "updatedAt": "2026-05-08",
+      "note": "원형 로딩 모션"
     }
   ]
 }
