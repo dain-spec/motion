@@ -19,7 +19,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot", "lottie"],
       "updatedAt": "2026-05-07",
-      "note": "도트 로더 모션"
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
       "id": "loader-dot-answer",
@@ -29,7 +29,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot", "answer", "lottie"],
       "updatedAt": "2026-05-07",
-      "note": "답변용 도트 로더 모션"
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
       "id": "loading-circle",
@@ -39,7 +39,7 @@
       "thumbnail": "",
       "tags": ["loading", "circle", "lottie"],
       "updatedAt": "2026-05-08",
-      "note": "원형 로딩 모션"
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     }
   ]
 }
