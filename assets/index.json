@@ -60,6 +60,36 @@
       "tags": ["loading", "gray", "lottie"],
       "updatedAt": "2026-05-08",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+    },
+    {
+      "id": "apng-loader",
+      "type": "apng",
+      "title": "APNG Loader",
+      "path": "./assets/apng/loader.png",
+      "thumbnail": "",
+      "tags": ["apng", "loader"],
+      "updatedAt": "2026-05-08",
+      "note": "APNG 로더 작업물"
+    },
+    {
+      "id": "apng-loading-circle",
+      "type": "apng",
+      "title": "APNG Loading Circle",
+      "path": "./assets/apng/loading_circle.png",
+      "thumbnail": "",
+      "tags": ["apng", "loading", "circle"],
+      "updatedAt": "2026-05-08",
+      "note": "APNG 원형 로딩 작업물"
+    },
+    {
+      "id": "apng-loading-dot",
+      "type": "apng",
+      "title": "APNG Loading Dot",
+      "path": "./assets/apng/loading_dot.png",
+      "thumbnail": "",
+      "tags": ["apng", "loading", "dot"],
+      "updatedAt": "2026-05-08",
+      "note": "APNG 도트 로딩 작업물"
     }
   ]
 }
