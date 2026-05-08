@@ -42,14 +42,24 @@
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
-      "id": "logo-wehago",
+      "id": "loading-dot-blue",
       "type": "json",
-      "title": "WEHAGO Logo",
-      "path": "./assets/json/logo_wehago.json",
+      "title": "Loading Dot Blue",
+      "path": "./assets/json/loading_dot_blue.json",
       "thumbnail": "",
-      "tags": ["logo", "wehago", "lottie"],
+      "tags": ["loading", "dot", "blue", "lottie"],
       "updatedAt": "2026-05-08",
-      "note": "WEHAGO 로고 모션"
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+    },
+    {
+      "id": "loading-gray",
+      "type": "json",
+      "title": "Loading Gray",
+      "path": "./assets/json/loading_gray.json",
+      "thumbnail": "",
+      "tags": ["loading", "gray", "lottie"],
+      "updatedAt": "2026-05-08",
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     }
   ]
 }
