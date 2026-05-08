@@ -127,12 +127,17 @@ function renderAssets() {
 function renderPreview(asset, container) {
   if (asset.type === "json") {
     try {
+      container.innerHTML = "";
       lottie.loadAnimation({
         container,
-        renderer: "svg",
+        renderer: "canvas",
         loop: true,
         autoplay: true,
         path: resolveSiteUrl(asset.path),
+        rendererSettings: {
+          clearCanvas: true,
+          progressiveLoad: true,
+        },
       });
     } catch {
       container.innerHTML = '<p class="preview-error">JSON 미리보기 실패</p>';
