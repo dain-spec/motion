@@ -125,6 +125,18 @@ function renderAssets() {
 }
 
 function renderPreview(asset, container) {
+  if (asset.id === "logo-wehago") {
+    const iframe = document.createElement("iframe");
+    iframe.className = "preview-iframe";
+    iframe.src = resolveSiteUrl("./assets/logo_wehago.html");
+    iframe.title = "WEHAGO 로고 미리보기";
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "no-referrer";
+    container.innerHTML = "";
+    container.appendChild(iframe);
+    return;
+  }
+
   if (asset.type === "json") {
     try {
       container.innerHTML = "";
