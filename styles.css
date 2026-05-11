@@ -124,7 +124,7 @@ select {
 
 #searchInput {
   background: #212121;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .asset-grid {
