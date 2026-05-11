@@ -146,6 +146,32 @@ select {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+.download-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.asset-card:hover .download-overlay,
+.asset-card:focus-within .download-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.download-overlay:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -4px;
+}
+
 .preview-area {
   aspect-ratio: 1 / 1;
   width: 100%;
@@ -154,45 +180,6 @@ select {
   place-items: center;
   background: #212121;
   overflow: hidden;
-  position: relative;
-}
-
-.download-button {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 160ms ease;
-}
-
-.download-button-icon {
-  width: 14px;
-  height: 14px;
-  display: block;
-  flex-shrink: 0;
-}
-
-.preview-area:hover .download-button,
-.preview-area:focus-within .download-button {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.download-button:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.85);
-  outline-offset: 2px;
 }
 
 .preview-area img {
