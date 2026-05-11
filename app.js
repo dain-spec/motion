@@ -118,7 +118,6 @@ function renderAssets() {
 
     const orderLabel = `${String(index + 1).padStart(2, "0")}. `;
     setTextIfExists(fragment, ".asset-title", `${orderLabel}${asset.title}`);
-    setTextIfExists(fragment, ".asset-type", asset.type.toUpperCase());
     setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
 
     const downloadHref = resolveSiteUrl(asset.path);

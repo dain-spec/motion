@@ -132,34 +132,34 @@
       "note": "스피너 로딩 (기본)"
     },
     {
-      "id": "spinner-loading-16-dark",
+      "id": "loading-16-dark",
       "type": "json",
       "title": "Spinner Loading 16 Dark",
       "path": "./assets/Loader/spinner_loading_16_dark.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "circle"],
+      "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "16px 다크 스피너"
+      "note": "-"
     },
     {
-      "id": "spinner-loading-18",
+      "id": "loading-18",
       "type": "json",
       "title": "Spinner Loading 18",
       "path": "./assets/Loader/spinner_loading_18.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "circle"],
+      "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "18px 스피너"
+      "note": "-"
     },
     {
-      "id": "spinner-loading-24",
+      "id": "loading-24",
       "type": "json",
-      "title": "Spinner Loading 24",
+      "title": "Loading",
       "path": "./assets/Loader/spinner_loading_24.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "circle"],
+      "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "스피너"
+      "note": "-"
     },
     {
       "id": "ic-analysis",
