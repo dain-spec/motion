@@ -157,18 +157,11 @@ select {
   position: relative;
 }
 
-.preview-area canvas,
-.preview-area img,
-.preview-area iframe {
-  position: relative;
-  z-index: 1;
-}
-
 .download-button {
   position: absolute;
   right: 12px;
   bottom: 12px;
-  z-index: 5;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 6px;
