@@ -12,7 +12,6 @@ function setTextIfExists(root, selector, value) {
 const state = {
   assets: [],
   filteredAssets: [],
-  selectedCategory: "loader",
 };
 
 const elements = {
@@ -20,7 +19,6 @@ const elements = {
   empty: document.getElementById("emptyState"),
   search: document.getElementById("searchInput"),
   typeFilter: document.getElementById("typeFilter"),
-  categoryTabs: Array.from(document.querySelectorAll(".category-tab")),
   template: document.getElementById("assetCardTemplate"),
   repoLink: document.getElementById("repoLink"),
 };
@@ -30,7 +28,6 @@ init().catch((error) => {
     elements.empty.classList.remove("hidden");
     elements.empty.textContent = `로드 실패: ${error.message}`;
   } else {
-    // Fallback for temporary HTML/JS cache mismatch states.
     console.error("로드 실패:", error);
   }
 });
@@ -42,15 +39,6 @@ async function init() {
 
   elements.search.addEventListener("input", applyFilters);
   elements.typeFilter.addEventListener("change", applyFilters);
-  elements.categoryTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      state.selectedCategory = tab.dataset.category || "loader";
-      elements.categoryTabs.forEach((btn) => {
-        btn.classList.toggle("active", btn === tab);
-      });
-      applyFilters();
-    });
-  });
 
   applyFilters();
 }
@@ -63,28 +51,12 @@ function assetMatchesCategory(asset, category) {
   return keywords.includes("loader") || keywords.includes("loading");
 }
 
-function matchesCategory(asset) {
-  return assetMatchesCategory(asset, state.selectedCategory);
-}
-
-function updateCategoryTabLabels() {
-  const query = elements.search.value.trim().toLowerCase();
-  const selectedType = elements.typeFilter.value;
-
-  elements.categoryTabs.forEach((tab) => {
-    const category = tab.dataset.category || "loader";
-    const baseLabel = (tab.dataset.tabLabel || category).trim();
-    const count = state.assets.filter((asset) => {
-      if (!assetMatchesCategory(asset, category)) {
-        return false;
-      }
-      const matchesType = selectedType === "all" || asset.type === selectedType;
-      const haystack = `${asset.title} ${(asset.tags || []).join(" ")} ${asset.note || ""}`.toLowerCase();
-      const matchesQuery = !query || haystack.includes(query);
-      return matchesType && matchesQuery;
-    }).length;
-    tab.textContent = `${baseLabel} (${count})`;
-  });
+function matchesCategoryFilter(asset) {
+  const filter = elements.typeFilter.value;
+  if (filter === "all") {
+    return true;
+  }
+  return assetMatchesCategory(asset, filter);
 }
 
 async function loadAssetIndex() {
@@ -112,17 +84,14 @@ async function loadAssetIndex() {
 
 function applyFilters() {
   const query = elements.search.value.trim().toLowerCase();
-  const selectedType = elements.typeFilter.value;
 
   state.filteredAssets = state.assets.filter((asset) => {
-    const matchesCategoryTab = matchesCategory(asset);
-    const matchesType = selectedType === "all" || asset.type === selectedType;
+    const matchesCategory = matchesCategoryFilter(asset);
     const haystack = `${asset.title} ${(asset.tags || []).join(" ")} ${asset.note || ""}`.toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
-    return matchesCategoryTab && matchesType && matchesQuery;
+    return matchesCategory && matchesQuery;
   });
 
-  updateCategoryTabLabels();
   renderAssets();
 }
 
@@ -135,13 +104,11 @@ function renderAssets() {
   }
   elements.empty.classList.add("hidden");
 
-  state.filteredAssets.forEach((asset, index) => {
+  state.filteredAssets.forEach((asset) => {
     const fragment = elements.template.content.cloneNode(true);
     const card = fragment.querySelector(".asset-card");
     const preview = fragment.querySelector(".preview-area");
 
-    const orderLabel = `${String(index + 1).padStart(2, "0")}. `;
-    setTextIfExists(fragment, ".asset-title", `${orderLabel}${asset.title}`);
     setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
 
     const downloadHref = resolveSiteUrl(asset.path);

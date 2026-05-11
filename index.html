@@ -43,10 +43,10 @@
 
     <main>
       <section class="toolbar">
-        <select id="typeFilter" aria-label="타입 필터">
-          <option value="all">전체 타입</option>
-          <option value="json">JSON</option>
-          <option value="apng">APNG</option>
+        <select id="typeFilter" aria-label="카테고리 필터">
+          <option value="all">전체</option>
+          <option value="loader">Loader</option>
+          <option value="icon">Icon</option>
         </select>
         <input
           id="searchInput"
@@ -54,10 +54,6 @@
           placeholder="제목 또는 태그 검색"
           aria-label="에셋 검색"
         />
-      </section>
-      <section class="category-tabs" aria-label="카테고리 탭">
-        <button type="button" class="category-tab active" data-category="loader" data-tab-label="Loader">Loader</button>
-        <button type="button" class="category-tab" data-category="icon" data-tab-label="Icon">Icon</button>
       </section>
 
       <section id="assetGrid" class="asset-grid" aria-live="polite"></section>
@@ -69,9 +65,6 @@
         <div class="preview-area"></div>
         <a class="download-overlay" href="#" download aria-label="파일 다운로드">다운로드</a>
         <div class="card-body">
-          <div class="card-top">
-            <h2 class="asset-title"></h2>
-          </div>
           <div class="tag-list"></div>
           <div class="shared-note-box">
             <p class="shared-note"></p>

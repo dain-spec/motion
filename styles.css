@@ -71,27 +71,6 @@ main {
   margin-bottom: 1rem;
 }
 
-.category-tabs {
-  display: inline-flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.category-tab {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  background: transparent;
-  color: #fff;
-  font-size: 13px;
-  line-height: 1;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.category-tab.active {
-  background: rgba(255, 255, 255, 0.15);
-}
-
 input,
 select {
   background: var(--panel);
@@ -161,11 +140,13 @@ input {
 }
 
 .preview-area {
-  height: 220px;
-  padding: 40px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  padding: clamp(1rem, 8%, 2.5rem);
   display: grid;
   place-items: center;
   background: #212121;
+  overflow: hidden;
 }
 
 .preview-area img {
@@ -189,19 +170,6 @@ input {
 .card-body {
   padding: 0.8rem;
   background: #212121;
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 8px;
-}
-
-.asset-title {
-  margin: 0;
-  font-size: 1rem;
 }
 
 .tag-list {
