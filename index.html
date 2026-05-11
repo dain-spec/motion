@@ -25,31 +25,32 @@
   </head>
   <body>
     <header class="header">
-      <div>
+      <div class="header-title">
         <h1>Motion Asset Library</h1>
       </div>
-      <a class="repo-link" href="#" id="repoLink" target="_blank" rel="noreferrer">
-        저장소 열기
-        <img
-          class="repo-link-icon"
-          src="./assets/ic_arrow_lean.svg"
-          alt=""
-          width="16"
-          height="16"
-          aria-hidden="true"
-        />
-      </a>
-    </header>
-
-    <main>
-      <section class="toolbar">
+      <div class="header-actions">
         <input
           id="searchInput"
+          class="header-search"
           type="search"
           placeholder="제목 또는 태그 검색"
           aria-label="에셋 검색"
         />
-      </section>
+        <a class="repo-link" href="#" id="repoLink" target="_blank" rel="noreferrer">
+          저장소 열기
+          <img
+            class="repo-link-icon"
+            src="./assets/ic_arrow_lean.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true"
+          />
+        </a>
+      </div>
+    </header>
+
+    <main>
       <section class="category-tabs" aria-label="카테고리 탭">
         <button type="button" class="category-tab active" data-category="all" data-tab-label="전체">전체</button>
         <button type="button" class="category-tab" data-category="loader" data-tab-label="Loader">Loader</button>
