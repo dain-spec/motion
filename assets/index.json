@@ -12,6 +12,16 @@
       "note": "2024-나하고 모바일-작업물-loading-loadng_circular"
     },
     {
+      "id": "loader-data",
+      "type": "json",
+      "title": "Loader Data",
+      "path": "./assets/Loader/loader_data.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-11",
+      "note": "데이터 로딩 표시"
+    },
+    {
       "id": "loading-gray",
       "type": "json",
       "title": "Loading Gray",
@@ -22,14 +32,34 @@
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
-      "id": "loader-data",
+      "id": "loading-16-dark",
       "type": "json",
-      "title": "Loader Data",
-      "path": "./assets/Loader/loader_data.json",
+      "title": "Spinner Loading 16 Dark",
+      "path": "./assets/Loader/spinner_loading_16_dark.json",
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "데이터 로딩 표시"
+      "note": "-"
+    },
+    {
+      "id": "loading-18",
+      "type": "json",
+      "title": "Spinner Loading 18",
+      "path": "./assets/Loader/spinner_loading_18.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-11",
+      "note": "-"
+    },
+    {
+      "id": "loading-24",
+      "type": "json",
+      "title": "Loading",
+      "path": "./assets/Loader/spinner_loading_24.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-11",
+      "note": "-"
     },
     {
       "id": "s-loading",
@@ -72,34 +102,14 @@
       "note": "스피너 로딩 (기본)"
     },
     {
-      "id": "loading-16-dark",
+      "id": "dot-voice",
       "type": "json",
-      "title": "Spinner Loading 16 Dark",
-      "path": "./assets/Loader/spinner_loading_16_dark.json",
+      "title": "Dot Voice",
+      "path": "./assets/Loader/dot_voice.json",
       "thumbnail": "",
-      "tags": ["loader", "circle"],
+      "tags": ["loader", "dot", "voice"],
       "updatedAt": "2026-05-11",
-      "note": "-"
-    },
-    {
-      "id": "loading-18",
-      "type": "json",
-      "title": "Spinner Loading 18",
-      "path": "./assets/Loader/spinner_loading_18.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "-"
-    },
-    {
-      "id": "loading-24",
-      "type": "json",
-      "title": "Loading",
-      "path": "./assets/Loader/spinner_loading_24.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "-"
+      "note": "음성 입력 중 도트 로더"
     },
     {
       "id": "loader-dot",
@@ -122,14 +132,14 @@
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
-      "id": "dot-voice",
+      "id": "loading-dot-blue",
       "type": "json",
-      "title": "Dot Voice",
-      "path": "./assets/Loader/dot_voice.json",
+      "title": "Loading Dot Blue",
+      "path": "./assets/Loader/loading_dot_blue.json",
       "thumbnail": "",
-      "tags": ["loader", "dot", "voice"],
-      "updatedAt": "2026-05-11",
-      "note": "음성 입력 중 도트 로더"
+      "tags": ["loader", "dot"],
+      "updatedAt": "2026-05-08",
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
       "id": "loading-generic",
@@ -140,16 +150,6 @@
       "tags": ["loader", "dot"],
       "updatedAt": "2026-05-11",
       "note": "일반 로딩 애니메이션"
-    },
-    {
-      "id": "loading-dot-blue",
-      "type": "json",
-      "title": "Loading Dot Blue",
-      "path": "./assets/Loader/loading_dot_blue.json",
-      "thumbnail": "",
-      "tags": ["loader", "dot"],
-      "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
       "id": "loading-record",
