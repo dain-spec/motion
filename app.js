@@ -55,13 +55,36 @@ async function init() {
   applyFilters();
 }
 
-function matchesCategory(asset) {
-  const selected = state.selectedCategory;
+function assetMatchesCategory(asset, category) {
   const keywords = `${asset.id || ""} ${asset.title || ""} ${(asset.tags || []).join(" ")}`.toLowerCase();
-  if (selected === "icon") {
+  if (category === "icon") {
     return keywords.includes("icon");
   }
   return keywords.includes("loader") || keywords.includes("loading");
+}
+
+function matchesCategory(asset) {
+  return assetMatchesCategory(asset, state.selectedCategory);
+}
+
+function updateCategoryTabLabels() {
+  const query = elements.search.value.trim().toLowerCase();
+  const selectedType = elements.typeFilter.value;
+
+  elements.categoryTabs.forEach((tab) => {
+    const category = tab.dataset.category || "loader";
+    const baseLabel = (tab.dataset.tabLabel || category).trim();
+    const count = state.assets.filter((asset) => {
+      if (!assetMatchesCategory(asset, category)) {
+        return false;
+      }
+      const matchesType = selectedType === "all" || asset.type === selectedType;
+      const haystack = `${asset.title} ${(asset.tags || []).join(" ")} ${asset.note || ""}`.toLowerCase();
+      const matchesQuery = !query || haystack.includes(query);
+      return matchesType && matchesQuery;
+    }).length;
+    tab.textContent = `${baseLabel} (${count})`;
+  });
 }
 
 async function loadAssetIndex() {
@@ -99,6 +122,7 @@ function applyFilters() {
     return matchesCategoryTab && matchesType && matchesQuery;
   });
 
+  updateCategoryTabLabels();
   renderAssets();
 }
 
