@@ -2,12 +2,12 @@
   "repoUrl": "https://github.com/dain-spec/motion",
   "assets": [
     {
-      "id": "team-loader",
+      "id": "loader",
       "type": "json",
-      "title": "Team Loader",
+      "title": "Loader",
       "path": "./assets/Loader/loader.json",
       "thumbnail": "",
-      "tags": ["sample", "loader", "lottie"],
+      "tags": ["loader", "default", "Circle"],
       "updatedAt": "2026-04-22",
       "note": "2024-나하고 모바일-작업물-loading-loadng_circular"
     },
@@ -17,7 +17,7 @@
       "title": "Loader Dot",
       "path": "./assets/Loader/loader_dot.json",
       "thumbnail": "",
-      "tags": ["loader", "dot", "lottie"],
+      "tags": ["loader", "dot"],
       "updatedAt": "2026-05-07",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
@@ -27,7 +27,7 @@
       "title": "Loader Dot Answer",
       "path": "./assets/Loader/loader_dot_answer.json",
       "thumbnail": "",
-      "tags": ["loader", "dot", "answer", "lottie"],
+      "tags": ["loader", "dot", "answer"],
       "updatedAt": "2026-05-07",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
@@ -37,7 +37,7 @@
       "title": "Dot Voice",
       "path": "./assets/Loader/dot_voice.json",
       "thumbnail": "",
-      "tags": ["loader", "dot", "voice", "lottie"],
+      "tags": ["loader", "dot", "voice"],
       "updatedAt": "2026-05-11",
       "note": "음성 입력 중 도트 로더"
     },
@@ -47,7 +47,7 @@
       "title": "Loading",
       "path": "./assets/Loader/loading.json",
       "thumbnail": "",
-      "tags": ["loading", "lottie"],
+      "tags": ["loading", "dot"],
       "updatedAt": "2026-05-11",
       "note": "일반 로딩 애니메이션"
     },
@@ -57,7 +57,7 @@
       "title": "Loading Circle",
       "path": "./assets/Loader/loading_circle.json",
       "thumbnail": "",
-      "tags": ["loading", "circle", "lottie"],
+      "tags": ["loading", "circle"],
       "updatedAt": "2026-05-08",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
@@ -67,7 +67,7 @@
       "title": "Loading Dot Blue",
       "path": "./assets/Loader/loading_dot_blue.json",
       "thumbnail": "",
-      "tags": ["loading", "dot", "blue", "lottie"],
+      "tags": ["loading", "dot"],
       "updatedAt": "2026-05-08",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
@@ -77,7 +77,7 @@
       "title": "Loading Gray",
       "path": "./assets/Loader/loading_gray.json",
       "thumbnail": "",
-      "tags": ["loading", "gray", "lottie"],
+      "tags": ["loading", "circle"],
       "updatedAt": "2026-05-08",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
@@ -87,7 +87,7 @@
       "title": "Loading Record",
       "path": "./assets/Loader/loading_record.json",
       "thumbnail": "",
-      "tags": ["loading", "record", "lottie"],
+      "tags": ["loading", "dot"],
       "updatedAt": "2026-05-11",
       "note": "녹음 관련 로딩"
     },
@@ -97,7 +97,7 @@
       "title": "Loader Data",
       "path": "./assets/Loader/loader_data.json",
       "thumbnail": "",
-      "tags": ["loader", "data", "lottie"],
+      "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
       "note": "데이터 로딩 표시"
     },
@@ -107,7 +107,7 @@
       "title": "S Loading",
       "path": "./assets/Loader/s_loading.json",
       "thumbnail": "",
-      "tags": ["loader", "lottie"],
+      "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
       "note": "S 타입 로딩"
     },
@@ -117,7 +117,7 @@
       "title": "IC Loading S",
       "path": "./assets/Loader/ic_loading_s.json",
       "thumbnail": "",
-      "tags": ["loader", "icon", "small", "lottie"],
+      "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
       "note": "소형 아이콘형 로딩"
     },
@@ -127,7 +127,7 @@
       "title": "Spinner Loading",
       "path": "./assets/Loader/spinner_loading.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "lottie"],
+      "tags": ["loader", "spinner", "circle"],
       "updatedAt": "2026-05-11",
       "note": "스피너 로딩 (기본)"
     },
@@ -137,7 +137,7 @@
       "title": "Spinner Loading 16 Dark",
       "path": "./assets/Loader/spinner_loading_16_dark.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "dark", "lottie"],
+      "tags": ["loader", "spinner", "circle"],
       "updatedAt": "2026-05-11",
       "note": "16px 다크 스피너"
     },
@@ -147,7 +147,7 @@
       "title": "Spinner Loading 18",
       "path": "./assets/Loader/spinner_loading_18.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "lottie"],
+      "tags": ["loader", "spinner", "circle"],
       "updatedAt": "2026-05-11",
       "note": "18px 스피너"
     },
@@ -157,7 +157,7 @@
       "title": "Spinner Loading 24",
       "path": "./assets/Loader/spinner_loading_24.json",
       "thumbnail": "",
-      "tags": ["loader", "spinner", "lottie"],
+      "tags": ["loader", "spinner", "circle"],
       "updatedAt": "2026-05-11",
       "note": "24px 스피너"
     },
