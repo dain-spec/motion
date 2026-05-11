@@ -12,6 +12,56 @@
       "note": "2024-나하고 모바일-작업물-loading-loadng_circular"
     },
     {
+      "id": "loading-circle",
+      "type": "json",
+      "title": "Loading Circle",
+      "path": "./assets/Loader/loading_circle.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-08",
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+    },
+    {
+      "id": "loading-gray",
+      "type": "json",
+      "title": "Loading Gray",
+      "path": "./assets/Loader/loading_gray.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-08",
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+    },
+    {
+      "id": "loader-data",
+      "type": "json",
+      "title": "Loader Data",
+      "path": "./assets/Loader/loader_data.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-11",
+      "note": "데이터 로딩 표시"
+    },
+    {
+      "id": "s-loading",
+      "type": "json",
+      "title": "S Loading",
+      "path": "./assets/Loader/s_loading.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-11",
+      "note": "S 타입 로딩"
+    },
+    {
+      "id": "ic-loading-s",
+      "type": "json",
+      "title": "IC Loading S",
+      "path": "./assets/Loader/ic_loading_s.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle"],
+      "updatedAt": "2026-05-11",
+      "note": "소형 아이콘형 로딩"
+    },
+    {
       "id": "loader-dot",
       "type": "json",
       "title": "Loader Dot",
@@ -47,19 +97,9 @@
       "title": "Loading",
       "path": "./assets/Loader/loading.json",
       "thumbnail": "",
-      "tags": ["loading", "dot"],
+      "tags": ["loader", "dot"],
       "updatedAt": "2026-05-11",
       "note": "일반 로딩 애니메이션"
-    },
-    {
-      "id": "loading-circle",
-      "type": "json",
-      "title": "Loading Circle",
-      "path": "./assets/Loader/loading_circle.json",
-      "thumbnail": "",
-      "tags": ["loading", "circle"],
-      "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
     {
       "id": "loading-dot-blue",
@@ -67,17 +107,7 @@
       "title": "Loading Dot Blue",
       "path": "./assets/Loader/loading_dot_blue.json",
       "thumbnail": "",
-      "tags": ["loading", "dot"],
-      "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
-    },
-    {
-      "id": "loading-gray",
-      "type": "json",
-      "title": "Loading Gray",
-      "path": "./assets/Loader/loading_gray.json",
-      "thumbnail": "",
-      "tags": ["loading", "circle"],
+      "tags": ["loader", "dot"],
       "updatedAt": "2026-05-08",
       "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
     },
@@ -87,39 +117,9 @@
       "title": "Loading Record",
       "path": "./assets/Loader/loading_record.json",
       "thumbnail": "",
-      "tags": ["loading", "dot"],
+      "tags": ["loader", "dot"],
       "updatedAt": "2026-05-11",
       "note": "녹음 관련 로딩"
-    },
-    {
-      "id": "loader-data",
-      "type": "json",
-      "title": "Loader Data",
-      "path": "./assets/Loader/loader_data.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "데이터 로딩 표시"
-    },
-    {
-      "id": "s-loading",
-      "type": "json",
-      "title": "S Loading",
-      "path": "./assets/Loader/s_loading.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "S 타입 로딩"
-    },
-    {
-      "id": "ic-loading-s",
-      "type": "json",
-      "title": "IC Loading S",
-      "path": "./assets/Loader/ic_loading_s.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "소형 아이콘형 로딩"
     },
     {
       "id": "spinner-loading",
@@ -159,7 +159,7 @@
       "thumbnail": "",
       "tags": ["loader", "spinner", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "24px 스피너"
+      "note": "스피너"
     },
     {
       "id": "ic-analysis",
@@ -167,7 +167,7 @@
       "title": "IC Analysis",
       "path": "./assets/Icon/ic_analysis.json",
       "thumbnail": "",
-      "tags": ["icon", "analysis", "lottie"],
+      "tags": ["icon", "analysis"],
       "updatedAt": "2026-05-11",
       "note": "분석 아이콘 애니메이션"
     },
@@ -177,7 +177,7 @@
       "title": "IC Check 16 Green",
       "path": "./assets/Icon/ic_check_16_gn.json",
       "thumbnail": "",
-      "tags": ["icon", "check", "green", "lottie"],
+      "tags": ["icon", "check"],
       "updatedAt": "2026-05-11",
       "note": "16px 체크(그린)"
     },
@@ -187,7 +187,7 @@
       "title": "IC Generating",
       "path": "./assets/Icon/ic_generating.json",
       "thumbnail": "",
-      "tags": ["icon", "generating", "lottie"],
+      "tags": ["icon"],
       "updatedAt": "2026-05-11",
       "note": "생성 중 아이콘"
     },
@@ -197,7 +197,7 @@
       "title": "IC Listen 32 White",
       "path": "./assets/Icon/ic_listen_32_wh.json",
       "thumbnail": "",
-      "tags": ["icon", "listen", "white", "lottie"],
+      "tags": ["icon"],
       "updatedAt": "2026-05-11",
       "note": "32px 청취(화이트)"
     },
@@ -207,7 +207,7 @@
       "title": "IC Warning",
       "path": "./assets/Icon/ic_warning.json",
       "thumbnail": "",
-      "tags": ["icon", "warning", "lottie"],
+      "tags": ["icon", "warning"],
       "updatedAt": "2026-05-11",
       "note": "경고 아이콘 애니메이션"
     }
