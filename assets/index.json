@@ -12,16 +12,6 @@
       "note": "2024-나하고 모바일-작업물-loading-loadng_circular"
     },
     {
-      "id": "loading-circle",
-      "type": "json",
-      "title": "Loading Circle",
-      "path": "./assets/Loader/loading_circle.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
-    },
-    {
       "id": "loading-gray",
       "type": "json",
       "title": "Loading Gray",
@@ -50,16 +40,6 @@
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
       "note": "S 타입 로딩"
-    },
-    {
-      "id": "ic-loading-s",
-      "type": "json",
-      "title": "IC Loading S",
-      "path": "./assets/Loader/ic_loading_s.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "소형 아이콘형 로딩"
     },
     {
       "id": "loader-dot",
@@ -120,6 +100,26 @@
       "tags": ["loader", "dot"],
       "updatedAt": "2026-05-11",
       "note": "녹음 관련 로딩"
+    },
+    {
+      "id": "loading-circle",
+      "type": "json",
+      "title": "Loading Circle",
+      "path": "./assets/Loader/loading_circle.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle", "spinner"],
+      "updatedAt": "2026-05-08",
+      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+    },
+    {
+      "id": "ic-loading-s",
+      "type": "json",
+      "title": "IC Loading S",
+      "path": "./assets/Loader/ic_loading_s.json",
+      "thumbnail": "",
+      "tags": ["loader", "circle", "spinner"],
+      "updatedAt": "2026-05-11",
+      "note": "소형 아이콘형 로딩"
     },
     {
       "id": "spinner-loading",
