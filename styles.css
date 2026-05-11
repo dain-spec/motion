@@ -68,7 +68,34 @@ main {
 .toolbar {
   display: flex;
   gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.category-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.category-tab {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.category-tab:hover,
+.category-tab:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.category-tab.active {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 input,
@@ -85,11 +112,6 @@ input {
 }
 
 #searchInput {
-  background: #212121;
-  border: none;
-}
-
-#typeFilter {
   background: #212121;
   border: none;
 }

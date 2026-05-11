@@ -12,13 +12,14 @@ function setTextIfExists(root, selector, value) {
 const state = {
   assets: [],
   filteredAssets: [],
+  selectedCategory: "all",
 };
 
 const elements = {
   grid: document.getElementById("assetGrid"),
   empty: document.getElementById("emptyState"),
   search: document.getElementById("searchInput"),
-  typeFilter: document.getElementById("typeFilter"),
+  categoryTabs: Array.from(document.querySelectorAll(".category-tab")),
   template: document.getElementById("assetCardTemplate"),
   repoLink: document.getElementById("repoLink"),
 };
@@ -38,12 +39,29 @@ async function init() {
   elements.repoLink.href = config.repoUrl || "#";
 
   elements.search.addEventListener("input", applyFilters);
-  elements.typeFilter.addEventListener("change", applyFilters);
+  elements.categoryTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      state.selectedCategory = tab.dataset.category || "all";
+      elements.categoryTabs.forEach((btn) => {
+        const active = btn === tab;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      applyFilters();
+    });
+  });
+
+  elements.categoryTabs.forEach((btn) => {
+    btn.setAttribute("aria-pressed", btn.classList.contains("active") ? "true" : "false");
+  });
 
   applyFilters();
 }
 
 function assetMatchesCategory(asset, category) {
+  if (category === "all") {
+    return true;
+  }
   const keywords = `${asset.id || ""} ${asset.title || ""} ${(asset.tags || []).join(" ")}`.toLowerCase();
   if (category === "icon") {
     return keywords.includes("icon");
@@ -51,12 +69,25 @@ function assetMatchesCategory(asset, category) {
   return keywords.includes("loader") || keywords.includes("loading");
 }
 
-function matchesCategoryFilter(asset) {
-  const filter = elements.typeFilter.value;
-  if (filter === "all") {
+function assetMatchesSearch(asset, query) {
+  if (!query) {
     return true;
   }
-  return assetMatchesCategory(asset, filter);
+  const haystack = `${asset.title} ${(asset.tags || []).join(" ")} ${asset.note || ""}`.toLowerCase();
+  return haystack.includes(query);
+}
+
+function updateCategoryTabLabels() {
+  const query = elements.search.value.trim().toLowerCase();
+
+  elements.categoryTabs.forEach((tab) => {
+    const category = tab.dataset.category || "all";
+    const baseLabel = (tab.dataset.tabLabel || category).trim();
+    const count = state.assets.filter(
+      (asset) => assetMatchesCategory(asset, category) && assetMatchesSearch(asset, query),
+    ).length;
+    tab.textContent = `${baseLabel} (${count})`;
+  });
 }
 
 async function loadAssetIndex() {
@@ -85,13 +116,12 @@ async function loadAssetIndex() {
 function applyFilters() {
   const query = elements.search.value.trim().toLowerCase();
 
-  state.filteredAssets = state.assets.filter((asset) => {
-    const matchesCategory = matchesCategoryFilter(asset);
-    const haystack = `${asset.title} ${(asset.tags || []).join(" ")} ${asset.note || ""}`.toLowerCase();
-    const matchesQuery = !query || haystack.includes(query);
-    return matchesCategory && matchesQuery;
-  });
+  state.filteredAssets = state.assets.filter(
+    (asset) =>
+      assetMatchesCategory(asset, state.selectedCategory) && assetMatchesSearch(asset, query),
+  );
 
+  updateCategoryTabLabels();
   renderAssets();
 }
 
