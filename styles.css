@@ -150,16 +150,31 @@ select {
 .download-overlay {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
-  text-decoration: none;
   font-size: 14px;
   font-weight: 600;
   opacity: 0;
   pointer-events: none;
   transition: opacity 160ms ease;
+}
+
+.download-option {
+  color: #fff;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+.download-option:hover {
+  text-decoration: underline;
+}
+
+.download-separator {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .asset-card:hover .download-overlay,

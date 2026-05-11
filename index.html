@@ -64,7 +64,11 @@
     <template id="assetCardTemplate">
       <article class="asset-card" tabindex="0">
         <div class="preview-area"></div>
-        <a class="download-overlay" href="#" download aria-label="파일 다운로드">다운로드</a>
+        <div class="download-overlay" aria-label="파일 다운로드 옵션">
+          <a class="download-option download-json" href="#" download aria-label="JSON 파일 다운로드">json</a>
+          <span class="download-separator hidden" aria-hidden="true">|</span>
+          <a class="download-option download-png hidden" href="#" download aria-label="PNG 파일 다운로드">png</a>
+        </div>
         <div class="card-body">
           <div class="tag-list"></div>
           <div class="shared-note-box">

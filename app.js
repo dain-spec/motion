@@ -13,6 +13,7 @@ const state = {
   assets: [],
   filteredAssets: [],
   selectedCategory: "all",
+  pngAvailability: new Map(),
 };
 
 const elements = {
@@ -37,6 +38,7 @@ async function init() {
   const config = await loadAssetIndex();
   state.assets = config.assets;
   elements.repoLink.href = config.repoUrl || "#";
+  await primePngAvailability(state.assets);
 
   elements.search.addEventListener("input", applyFilters);
   elements.categoryTabs.forEach((tab) => {
@@ -56,6 +58,49 @@ async function init() {
   });
 
   applyFilters();
+}
+
+function derivePngPath(assetPath) {
+  if (typeof assetPath !== "string" || !assetPath.toLowerCase().endsWith(".json")) {
+    return null;
+  }
+  return assetPath.replace(/\.json$/i, ".png");
+}
+
+async function checkPathExists(path) {
+  const url = resolveSiteUrl(path);
+  try {
+    const response = await fetch(url, { method: "HEAD" });
+    if (response.ok) {
+      return true;
+    }
+    if (response.status !== 405) {
+      return false;
+    }
+  } catch {
+    return false;
+  }
+
+  try {
+    const response = await fetch(url, { method: "GET" });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+async function primePngAvailability(assets) {
+  const jsonAssets = assets.filter((asset) => asset.type === "json");
+  await Promise.all(
+    jsonAssets.map(async (asset) => {
+      const pngPath = derivePngPath(asset.path);
+      if (!pngPath) {
+        return;
+      }
+      const exists = await checkPathExists(pngPath);
+      state.pngAvailability.set(asset.path, exists);
+    }),
+  );
 }
 
 function assetMatchesCategory(asset, category) {
@@ -141,11 +186,26 @@ function renderAssets() {
 
     setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
 
-    const downloadHref = resolveSiteUrl(asset.path);
-    const downloadOverlay = fragment.querySelector(".download-overlay");
-    if (downloadOverlay) {
-      downloadOverlay.href = downloadHref;
-      downloadOverlay.setAttribute("download", "");
+    const downloadJson = fragment.querySelector(".download-json");
+    const downloadPng = fragment.querySelector(".download-png");
+    const downloadSeparator = fragment.querySelector(".download-separator");
+    if (downloadJson) {
+      downloadJson.href = resolveSiteUrl(asset.path);
+      downloadJson.setAttribute("download", "");
+    }
+
+    const pngPath = derivePngPath(asset.path);
+    const hasPng = Boolean(pngPath && state.pngAvailability.get(asset.path));
+    if (downloadPng && downloadSeparator) {
+      downloadPng.classList.toggle("hidden", !hasPng);
+      downloadSeparator.classList.toggle("hidden", !hasPng);
+      if (hasPng && pngPath) {
+        downloadPng.href = resolveSiteUrl(pngPath);
+        downloadPng.setAttribute("download", "");
+      } else {
+        downloadPng.removeAttribute("href");
+        downloadPng.removeAttribute("download");
+      }
     }
 
     const tagList = fragment.querySelector(".tag-list");
