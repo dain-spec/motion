@@ -142,10 +142,11 @@ function renderAssets() {
     setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
 
     const downloadHref = resolveSiteUrl(asset.path);
-    const downloadOverlay = fragment.querySelector(".download-overlay");
-    if (downloadOverlay) {
-      downloadOverlay.href = downloadHref;
-      downloadOverlay.setAttribute("download", "");
+    const downloadButton = fragment.querySelector(".download-button");
+    if (downloadButton) {
+      downloadButton.href = downloadHref;
+      downloadButton.setAttribute("download", "");
+      downloadButton.setAttribute("aria-label", `${asset.title || "에셋"} 다운로드`);
     }
 
     const tagList = fragment.querySelector(".tag-list");
