@@ -146,6 +146,7 @@ function renderAssets() {
     if (downloadButton) {
       downloadButton.href = downloadHref;
       downloadButton.setAttribute("download", "");
+      downloadButton.setAttribute("aria-label", `${asset.title || "에셋"} 다운로드`);
     }
 
     const tagList = fragment.querySelector(".tag-list");
