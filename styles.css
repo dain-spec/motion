@@ -157,16 +157,24 @@ select {
   position: relative;
 }
 
+.preview-area canvas,
+.preview-area img,
+.preview-area iframe {
+  position: relative;
+  z-index: 1;
+}
+
 .download-button {
   position: absolute;
-  left: 12px;
+  right: 12px;
   bottom: 12px;
+  z-index: 5;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
   text-decoration: none;
@@ -174,39 +182,26 @@ select {
   font-weight: 600;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(6px);
-  transition:
-    opacity 140ms ease,
-    transform 140ms ease,
-    background 140ms ease;
+  transition: opacity 160ms ease;
 }
 
-.download-button:hover {
-  background: rgba(0, 0, 0, 0.7);
+.download-button-icon {
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .preview-area:hover .download-button,
-.preview-area:focus-within .download-button {
+.preview-area:focus-within .download-button,
+.download-button:focus-visible {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
 }
 
 .download-button:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.85);
   outline-offset: 2px;
-}
-
-.download-button-icon {
-  width: 16px;
-  height: 16px;
-  display: block;
-  filter: invert(1);
-  opacity: 0.9;
-}
-
-.download-button-text {
-  line-height: 1;
 }
 
 .preview-area img {
