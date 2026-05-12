@@ -247,10 +247,10 @@ select {
   width: 100%;
   min-width: 240px;
   min-height: 240px;
-  padding: clamp(1rem, 8%, 2.5rem);
+  padding: 40px;
   display: grid;
   place-items: center;
-  background: #333333;
+  background: #2A2A2A;
   border-radius: 20px;
   overflow: hidden;
 }
