@@ -9,7 +9,7 @@
       "thumbnail": "",
       "tags": ["loader", "default", "Circle"],
       "updatedAt": "2026-04-22",
-      "note": "2024-나하고 모바일-작업물-loading-loadng_circular"
+      "note": "로딩 기본"
     },
     {
       "id": "loader-data",
@@ -19,7 +19,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "데이터 로딩 표시"
+      "note": "로딩 블루"
     },
     {
       "id": "loading-gray",
@@ -29,7 +29,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+      "note": "로딩 그레이"
     },
     {
       "id": "loading-16-dark",
@@ -39,7 +39,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "-"
+      "note": "로딩 블루"
     },
     {
       "id": "loading-18",
@@ -49,7 +49,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "-"
+      "note": "로딩 화이트"
     },
     {
       "id": "loading-24",
@@ -59,7 +59,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "-"
+      "note": "로딩 블루"
     },
     {
       "id": "s-loading",
@@ -69,7 +69,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "S 타입 로딩"
+      "note": "로딩 색상"
     },
     {
       "id": "loading-circle",
@@ -79,7 +79,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle", "spinner"],
       "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+      "note": "스피너 기본"
     },
     {
       "id": "ic-loading-s",
@@ -89,7 +89,7 @@
       "thumbnail": "",
       "tags": ["loader", "circle", "spinner"],
       "updatedAt": "2026-05-11",
-      "note": "소형 아이콘형 로딩"
+      "note": "스피너 색상"
     },
     {
       "id": "spinner-loading",
@@ -99,7 +99,7 @@
       "thumbnail": "",
       "tags": ["loader", "spinner", "circle"],
       "updatedAt": "2026-05-11",
-      "note": "스피너 로딩 (기본)"
+      "note": "스피너 기본"
     },
     {
       "id": "dot-voice",
@@ -109,7 +109,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot", "voice"],
       "updatedAt": "2026-05-11",
-      "note": "음성 입력 중 도트 로더"
+      "note": "위하고/말하는 중"
     },
     {
       "id": "loader-dot",
@@ -119,7 +119,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot"],
       "updatedAt": "2026-05-07",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+      "note": "위하고/화상회의/대기중"
     },
     {
       "id": "loader-dot-answer",
@@ -129,7 +129,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot", "answer"],
       "updatedAt": "2026-05-07",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+      "note": "위하고/위봇/대기중"
     },
     {
       "id": "loading-dot-blue",
@@ -139,7 +139,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot"],
       "updatedAt": "2026-05-08",
-      "note": "2026-WEHAGO Web-WE봇-작업물-loading_json"
+      "note": "위하고/화상회의/대기중"
     },
     {
       "id": "loading-generic",
@@ -149,7 +149,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot"],
       "updatedAt": "2026-05-11",
-      "note": "일반 로딩 애니메이션"
+      "note": "아마란스/ONE AI/분석 중"
     },
     {
       "id": "loading-record",
@@ -159,7 +159,7 @@
       "thumbnail": "",
       "tags": ["loader", "dot"],
       "updatedAt": "2026-05-11",
-      "note": "녹음 관련 로딩"
+      "note": "아마란스/ONE AI/녹음 중"
     },
     {
       "id": "ic-analysis",
@@ -169,7 +169,7 @@
       "thumbnail": "",
       "tags": ["icon", "analysis"],
       "updatedAt": "2026-05-11",
-      "note": "분석 아이콘 애니메이션"
+      "note": "아마란스/ONE AI/분석"
     },
     {
       "id": "ic-check-16-gn",
@@ -179,7 +179,7 @@
       "thumbnail": "",
       "tags": ["icon", "check"],
       "updatedAt": "2026-05-11",
-      "note": "16px 체크(그린)"
+      "note": "아마란스/ONE AI/완료"
     },
     {
       "id": "ic-generating",
@@ -189,7 +189,7 @@
       "thumbnail": "",
       "tags": ["icon"],
       "updatedAt": "2026-05-11",
-      "note": "생성 중 아이콘"
+      "note": "아마란스/ONE AI/생성 중"
     },
     {
       "id": "ic-listen-32-wh",
@@ -199,7 +199,7 @@
       "thumbnail": "",
       "tags": ["icon"],
       "updatedAt": "2026-05-11",
-      "note": "32px 청취(화이트)"
+      "note": "아마란스/ONE AI/말하는 중"
     },
     {
       "id": "ic-warning",
@@ -209,7 +209,7 @@
       "thumbnail": "",
       "tags": ["icon", "warning"],
       "updatedAt": "2026-05-11",
-      "note": "경고 아이콘 애니메이션"
+      "note": "아마란스10/경고"
     },
     {
       "id": "dobi-guide",
@@ -219,7 +219,7 @@
       "thumbnail": "",
       "tags": ["dobi", "guide"],
       "updatedAt": "2026-05-12",
-      "note": "도비 위하고 이용가이드"
+      "note": "위하고/이용가이드"
     }
   ]
 }
