@@ -2,13 +2,6 @@ function resolveSiteUrl(relativePath) {
   return new URL(relativePath, document.baseURI).href;
 }
 
-function setTextIfExists(root, selector, value) {
-  const el = root.querySelector(selector);
-  if (el) {
-    el.textContent = value;
-  }
-}
-
 const state = {
   assets: [],
   filteredAssets: [],
@@ -184,11 +177,16 @@ function renderAssets() {
     const card = fragment.querySelector(".asset-card");
     const preview = fragment.querySelector(".preview-area");
 
-    setTextIfExists(fragment, ".shared-note", asset.note || "등록된 팀 메모가 없습니다.");
+    const noteEl = fragment.querySelector(".shared-note");
+    if (noteEl) {
+      const placeholder = "등록된 팀 메모가 없습니다.";
+      const raw = typeof asset.note === "string" ? asset.note.trim() : "";
+      noteEl.textContent = raw || placeholder;
+      noteEl.title = raw ? raw.replace(/\s+/g, " ") : "";
+    }
 
     const downloadJson = fragment.querySelector(".download-json");
     const downloadPng = fragment.querySelector(".download-png");
-    const downloadSeparator = fragment.querySelector(".download-separator");
     if (downloadJson) {
       downloadJson.href = resolveSiteUrl(asset.path);
       downloadJson.setAttribute("download", "");
@@ -196,9 +194,8 @@ function renderAssets() {
 
     const pngPath = derivePngPath(asset.path);
     const hasPng = Boolean(pngPath && state.pngAvailability.get(asset.path));
-    if (downloadPng && downloadSeparator) {
+    if (downloadPng) {
       downloadPng.classList.toggle("hidden", !hasPng);
-      downloadSeparator.classList.toggle("hidden", !hasPng);
       if (hasPng && pngPath) {
         downloadPng.href = resolveSiteUrl(pngPath);
         downloadPng.setAttribute("download", "");

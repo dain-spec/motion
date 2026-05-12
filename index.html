@@ -63,17 +63,24 @@
 
     <template id="assetCardTemplate">
       <article class="asset-card" tabindex="0">
-        <div class="preview-area"></div>
-        <div class="download-overlay" aria-label="파일 다운로드 옵션">
-          <a class="download-option download-json" href="#" download aria-label="JSON 파일 다운로드">json</a>
-          <span class="download-separator hidden" aria-hidden="true">|</span>
-          <a class="download-option download-png hidden" href="#" download aria-label="PNG 파일 다운로드">png</a>
-        </div>
-        <div class="card-body">
-          <div class="tag-list"></div>
-          <div class="shared-note-box">
-            <p class="shared-note"></p>
+        <div class="preview-shell">
+          <div class="preview-area"></div>
+          <div class="download-overlay" aria-label="파일 다운로드 옵션">
+            <div class="download-button-wrap">
+              <a class="download-option download-json" href="#" download aria-label="JSON 파일 다운로드">
+                <img class="download-option-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
+                <span class="download-option-label">JSON</span>
+              </a>
+              <a class="download-option download-png hidden" href="#" download aria-label="PNG 파일 다운로드">
+                <img class="download-option-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
+                <span class="download-option-label">PNG</span>
+              </a>
+            </div>
           </div>
+        </div>
+        <div class="card-text-group">
+          <p class="shared-note"></p>
+          <div class="tag-list"></div>
         </div>
       </article>
     </template>
