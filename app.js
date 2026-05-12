@@ -135,6 +135,32 @@ function assetMatchesSearch(asset, query) {
   return haystack.includes(query);
 }
 
+/** Loader 탭: 태그 기준 circle → spinner → dot 순. 다중 태그는 dot > spinner > circle 우선. */
+function loaderVisualGroupRank(asset) {
+  const tags = new Set((asset.tags || []).map((t) => String(t).toLowerCase()));
+  if (tags.has("dot")) {
+    return 2;
+  }
+  if (tags.has("spinner")) {
+    return 1;
+  }
+  if (tags.has("circle")) {
+    return 0;
+  }
+  return 0;
+}
+
+function sortLoaderTabAssets(assets) {
+  return [...assets].sort((a, b) => {
+    const ra = loaderVisualGroupRank(a);
+    const rb = loaderVisualGroupRank(b);
+    if (ra !== rb) {
+      return ra - rb;
+    }
+    return (a.path || "").localeCompare(b.path || "", "en");
+  });
+}
+
 function updateCategoryTabLabels() {
   const query = elements.search.value.trim().toLowerCase();
 
@@ -178,6 +204,10 @@ function applyFilters() {
     (asset) =>
       assetMatchesCategory(asset, state.selectedCategory) && assetMatchesSearch(asset, query),
   );
+
+  if (state.selectedCategory === "loader") {
+    state.filteredAssets = sortLoaderTabAssets(state.filteredAssets);
+  }
 
   updateCategoryTabLabels();
   renderAssets();
