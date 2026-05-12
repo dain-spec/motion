@@ -210,6 +210,16 @@
       "tags": ["icon", "warning"],
       "updatedAt": "2026-05-11",
       "note": "경고 아이콘 애니메이션"
+    },
+    {
+      "id": "dobi-guide",
+      "type": "image",
+      "title": "Dobi Guide",
+      "path": "./assets/Dobi/Dobi_Guide.png",
+      "thumbnail": "",
+      "tags": ["dobi", "guide"],
+      "updatedAt": "2026-05-12",
+      "note": "Dobi 가이드 이미지"
     }
   ]
 }

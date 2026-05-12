@@ -100,9 +100,12 @@ function assetMatchesCategory(asset, category) {
   if (category === "all") {
     return true;
   }
-  const keywords = `${asset.id || ""} ${asset.title || ""} ${(asset.tags || []).join(" ")}`.toLowerCase();
+  const keywords = `${asset.id || ""} ${asset.title || ""} ${(asset.tags || []).join(" ")} ${asset.path || ""}`.toLowerCase();
   if (category === "icon") {
     return keywords.includes("icon");
+  }
+  if (category === "dobi") {
+    return keywords.includes("dobi");
   }
   return keywords.includes("loader") || keywords.includes("loading");
 }
@@ -187,13 +190,23 @@ function renderAssets() {
 
     const downloadJson = fragment.querySelector(".download-json");
     const downloadPng = fragment.querySelector(".download-png");
+    const isImageAsset = asset.type === "image";
+
     if (downloadJson) {
-      downloadJson.href = resolveSiteUrl(asset.path);
-      downloadJson.setAttribute("download", "");
+      downloadJson.classList.toggle("hidden", isImageAsset);
+      if (!isImageAsset) {
+        downloadJson.href = resolveSiteUrl(asset.path);
+        downloadJson.setAttribute("download", "");
+      } else {
+        downloadJson.removeAttribute("href");
+        downloadJson.removeAttribute("download");
+      }
     }
 
-    const pngPath = derivePngPath(asset.path);
-    const hasPng = Boolean(pngPath && state.pngAvailability.get(asset.path));
+    const pngPath = isImageAsset ? asset.path : derivePngPath(asset.path);
+    const hasPng = isImageAsset
+      ? Boolean(typeof asset.path === "string" && asset.path.length > 0)
+      : Boolean(pngPath && state.pngAvailability.get(asset.path));
     if (downloadPng) {
       downloadPng.classList.toggle("hidden", !hasPng);
       if (hasPng && pngPath) {
@@ -263,6 +276,19 @@ function renderPreview(asset, container) {
     img.loading = "lazy";
     img.onerror = () => {
       container.innerHTML = '<p class="preview-error">APNG 미리보기 실패</p>';
+    };
+    container.appendChild(img);
+    return;
+  }
+
+  if (asset.type === "image") {
+    container.innerHTML = "";
+    const img = document.createElement("img");
+    img.src = resolveSiteUrl(asset.path);
+    img.alt = asset.title || "";
+    img.loading = "lazy";
+    img.onerror = () => {
+      container.innerHTML = '<p class="preview-error">이미지 미리보기 실패</p>';
     };
     container.appendChild(img);
     return;
