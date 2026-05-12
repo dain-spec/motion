@@ -16,20 +16,6 @@
       "note": "위하고/말하는 중"
     },
     {
-      "id": "ic-loading-s",
-      "type": "json",
-      "title": "IC Loading S",
-      "path": "./assets/Loader/ic_loading_s.json",
-      "thumbnail": "",
-      "tags": [
-        "loader",
-        "circle",
-        "spinner"
-      ],
-      "updatedAt": "2026-05-11",
-      "note": "스피너 색상"
-    },
-    {
       "id": "loader",
       "type": "json",
       "title": "Loader",
@@ -79,7 +65,34 @@
         "dot"
       ],
       "updatedAt": "2026-05-07",
-      "note": "위하고/위봇/대기중"
+      "note": "위하고/대기중"
+    },
+    {
+      "id": "loader-dots-loop",
+      "type": "json",
+      "title": "Loader Dots Loop",
+      "path": "./assets/Loader/loader_dots_loop.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "dot"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "영상통역회의/대기중"
+    },
+    {
+      "id": "ic-loading-s",
+      "type": "json",
+      "title": "IC Loading S",
+      "path": "./assets/Loader/loader_loading_s.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle",
+        "spinner"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "스피너 색상"
     },
     {
       "id": "loading-generic",
@@ -119,7 +132,7 @@
         "dot"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10포미/로딩"
     },
     {
       "id": "loading-dot-blue",
@@ -234,10 +247,11 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "oneai"
+        "oneai",
+        "analysis"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "나하고/ONEAI분석"
     },
     {
       "id": "ic-analysis",
@@ -247,6 +261,7 @@
       "thumbnail": "",
       "tags": [
         "icon",
+        "oneai",
         "analysis"
       ],
       "updatedAt": "2026-05-11",
@@ -259,10 +274,11 @@
       "path": "./assets/Icon/ic_card_scan.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "scan"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "명함스캔"
     },
     {
       "id": "ic-card-scan-completed",
@@ -271,10 +287,11 @@
       "path": "./assets/Icon/ic_card_scan_completed.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "scan"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "명함스캔완료"
     },
     {
       "id": "ic-check-16-gn",
@@ -284,7 +301,8 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "check"
+        "check",
+        "status"
       ],
       "updatedAt": "2026-05-11",
       "note": "아마란스10/ONE AI/완료"
@@ -297,10 +315,11 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "check"
+        "check",
+        "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "완료 블루"
     },
     {
       "id": "ic-check-circle-outlined-32-gn",
@@ -310,10 +329,11 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "check"
+        "check",
+        "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "완료 그린"
     },
     {
       "id": "ic-check-red",
@@ -323,10 +343,11 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "check"
+        "check",
+        "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "완료 레드"
     },
     {
       "id": "ic-close-circle-outlined-32-re",
@@ -335,22 +356,12 @@
       "path": "./assets/Icon/ic_close_circle_outlined_32_re.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "error",
+        "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
-    },
-    {
-      "id": "ic-dots-loop",
-      "type": "json",
-      "title": "IC Dots Loop",
-      "path": "./assets/Icon/ic_dots_loop.json",
-      "thumbnail": "",
-      "tags": [
-        "icon"
-      ],
-      "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "불가"
     },
     {
       "id": "ic-error",
@@ -360,10 +371,11 @@
       "thumbnail": "",
       "tags": [
         "icon",
+        "error",
         "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "불가"
     },
     {
       "id": "ic-error-triangle-outlined-32-ye",
@@ -373,10 +385,11 @@
       "thumbnail": "",
       "tags": [
         "icon",
+        "warning",
         "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "경고"
     },
     {
       "id": "ic-generating",
@@ -385,7 +398,8 @@
       "path": "./assets/Icon/ic_generating.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "oneai"
       ],
       "updatedAt": "2026-05-11",
       "note": "아마란스10/ONE AI/생성 중"
@@ -400,7 +414,7 @@
         "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "나가기"
     },
     {
       "id": "ic-header-logo",
@@ -409,10 +423,11 @@
       "path": "./assets/Icon/ic_header_logo.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "oneai"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "ONEAI심볼"
     },
     {
       "id": "ic-info",
@@ -421,10 +436,12 @@
       "path": "./assets/Icon/ic_info.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "info",
+        "status"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "정보"
     },
     {
       "id": "ic-listen-32-wh",
@@ -445,11 +462,10 @@
       "path": "./assets/Icon/ic_loading_72_loop.json",
       "thumbnail": "",
       "tags": [
-        "icon",
-        "loading"
+        "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/CRM"
     },
     {
       "id": "ic-loading-login-200-loop",
@@ -458,11 +474,10 @@
       "path": "./assets/Icon/ic_loading_login_200_loop.json",
       "thumbnail": "",
       "tags": [
-        "icon",
-        "loading"
+        "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/CRM"
     },
     {
       "id": "ic-loading-step2",
@@ -471,11 +486,10 @@
       "path": "./assets/Icon/ic_loading_step2.json",
       "thumbnail": "",
       "tags": [
-        "icon",
-        "loading"
+        "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-loading-step4",
@@ -484,11 +498,10 @@
       "path": "./assets/Icon/ic_loading_step4.json",
       "thumbnail": "",
       "tags": [
-        "icon",
-        "loading"
+        "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-lock-open-24",
@@ -500,7 +513,7 @@
         "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/CRM"
     },
     {
       "id": "ic-logout-outlined-32-bl",
@@ -512,7 +525,7 @@
         "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/CRM"
     },
     {
       "id": "ic-oneai-header",
@@ -522,11 +535,10 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "oneai",
-        "header"
+        "oneai"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "위하고/헤더"
     },
     {
       "id": "ic-service-icon01",
@@ -539,7 +551,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-service-icon02",
@@ -552,7 +564,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-service-icon03",
@@ -565,7 +577,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-service-icon04",
@@ -578,7 +590,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-service-icon05",
@@ -591,7 +603,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-service-icon06",
@@ -604,7 +616,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-service-icon07",
@@ -617,7 +629,7 @@
         "service"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "아마란스10/포미"
     },
     {
       "id": "ic-success",
@@ -626,7 +638,9 @@
       "path": "./assets/Icon/ic_success.json",
       "thumbnail": "",
       "tags": [
-        "icon"
+        "icon",
+        "check",
+        "status"
       ],
       "updatedAt": "2026-05-12",
       "note": "-"
@@ -641,7 +655,7 @@
         "icon"
       ],
       "updatedAt": "2026-05-12",
-      "note": "-"
+      "note": "T/PDF변환중"
     },
     {
       "id": "ic-warning",
@@ -651,7 +665,8 @@
       "thumbnail": "",
       "tags": [
         "icon",
-        "warning"
+        "warning",
+        "status"
       ],
       "updatedAt": "2026-05-11",
       "note": "아마란스10/경고"
@@ -664,6 +679,7 @@
       "thumbnail": "",
       "tags": [
         "icon",
+        "warning",
         "status"
       ],
       "updatedAt": "2026-05-12",

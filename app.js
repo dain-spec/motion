@@ -96,18 +96,35 @@ async function primePngAvailability(assets) {
   );
 }
 
+function assetFolderFromPath(asset) {
+  const p = (asset.path || "").replace(/\\/g, "/").toLowerCase();
+  if (p.includes("assets/loader/")) {
+    return "loader";
+  }
+  if (p.includes("assets/icon/")) {
+    return "icon";
+  }
+  if (p.includes("assets/dobi/")) {
+    return "dobi";
+  }
+  return null;
+}
+
 function assetMatchesCategory(asset, category) {
   if (category === "all") {
     return true;
   }
-  const keywords = `${asset.id || ""} ${asset.title || ""} ${(asset.tags || []).join(" ")} ${asset.path || ""}`.toLowerCase();
+  const folder = assetFolderFromPath(asset);
+  if (category === "loader") {
+    return folder === "loader";
+  }
   if (category === "icon") {
-    return keywords.includes("icon");
+    return folder === "icon";
   }
   if (category === "dobi") {
-    return keywords.includes("dobi");
+    return folder === "dobi";
   }
-  return keywords.includes("loader") || keywords.includes("loading");
+  return false;
 }
 
 function assetMatchesSearch(asset, query) {
