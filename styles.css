@@ -169,13 +169,17 @@ select {
   align-self: stretch;
   justify-self: stretch;
   border-radius: 20px;
+  position: relative;
 }
 
 .download-overlay {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 0 0 20px;
+  box-sizing: border-box;
   min-height: 0;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -183,6 +187,50 @@ select {
   opacity: 0;
   pointer-events: none;
   transition: opacity 160ms ease;
+}
+
+.download-overlay-bottom {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.edit-json-btn {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1000px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  color: #fff;
+}
+
+.edit-json-btn:hover,
+.edit-json-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.edit-json-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+
+.edit-json-btn-icon {
+  display: block;
+  pointer-events: none;
 }
 
 .download-button-wrap {
@@ -326,4 +374,106 @@ select {
 
 .hidden {
   display: none;
+}
+
+.color-edit-dialog {
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  max-width: min(420px, calc(100vw - 2rem));
+  background: #1a1a1a;
+  color: #fff;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+.color-edit-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.color-edit-dialog-inner {
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.color-edit-dialog-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.color-edit-asset-title {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.color-edit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: min(50vh, 320px);
+  overflow-y: auto;
+}
+
+.color-edit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.color-edit-row label {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.color-edit-row input[type="color"] {
+  width: 44px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.color-edit-error {
+  margin: 0;
+  font-size: 13px;
+  color: #ff8a8a;
+}
+
+.color-edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.color-edit-btn {
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.color-edit-btn.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.color-edit-btn.primary {
+  background: rgba(122, 162, 255, 0.25);
+  border-color: rgba(122, 162, 255, 0.55);
+  color: #e8eeff;
+}
+
+.color-edit-btn:hover {
+  filter: brightness(1.08);
 }

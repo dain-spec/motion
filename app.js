@@ -18,6 +18,9 @@ const elements = {
   repoLink: document.getElementById("repoLink"),
 };
 
+/** @type {{ asset: object, previewEl: HTMLElement, workingData: object, groups: { refs: object[] }[] } | null} */
+let colorEditState = null;
+
 init().catch((error) => {
   if (elements.empty) {
     elements.empty.classList.remove("hidden");
@@ -51,6 +54,7 @@ async function init() {
   });
 
   applyFilters();
+  initColorEditDialog();
 }
 
 function derivePngPath(assetPath) {
@@ -58,6 +62,132 @@ function derivePngPath(assetPath) {
     return null;
   }
   return assetPath.replace(/\.json$/i, ".png");
+}
+
+function isStaticLottieColorC(c) {
+  if (!c || typeof c !== "object" || !Array.isArray(c.k)) {
+    return false;
+  }
+  if (c.k.length !== 4) {
+    return false;
+  }
+  if (!c.k.every((x) => typeof x === "number" && Number.isFinite(x))) {
+    return false;
+  }
+  if (c.a === 1) {
+    return false;
+  }
+  return true;
+}
+
+function collectStaticLottieColorCKs(root) {
+  const out = [];
+  function walk(node) {
+    if (!node || typeof node !== "object") {
+      return;
+    }
+    if ((node.ty === "fl" || node.ty === "st") && isStaticLottieColorC(node.c)) {
+      out.push(node.c);
+    }
+    if (Array.isArray(node)) {
+      node.forEach(walk);
+      return;
+    }
+    for (const key of Object.keys(node)) {
+      walk(node[key]);
+    }
+  }
+  walk(root);
+  return out;
+}
+
+function colorGroupKey(kArr) {
+  return kArr.map((x) => Math.round(x * 1e5) / 1e5).join("|");
+}
+
+function groupLottieColorRefs(refs) {
+  const map = new Map();
+  for (const c of refs) {
+    const key = colorGroupKey(c.k);
+    if (!map.has(key)) {
+      map.set(key, []);
+    }
+    map.get(key).push(c);
+  }
+  return [...map.values()].map((groupRefs) => ({ refs: groupRefs }));
+}
+
+function rgb01ToHex(r, g, b) {
+  const to255 = (x) => Math.max(0, Math.min(255, Math.round(x <= 1 ? x * 255 : x)));
+  return `#${[to255(r), to255(g), to255(b)]
+    .map((n) => n.toString(16).padStart(2, "0"))
+    .join("")}`;
+}
+
+function hexToRgb01(hex) {
+  const h = hex.replace("#", "").trim();
+  if (h.length !== 6) {
+    return null;
+  }
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  if ([r, g, b].some((x) => Number.isNaN(x))) {
+    return null;
+  }
+  return { r, g, b };
+}
+
+const editableJsonCache = new Map();
+
+async function jsonHasEditableLottieColors(relativePath) {
+  if (editableJsonCache.has(relativePath)) {
+    return editableJsonCache.get(relativePath);
+  }
+  try {
+    const res = await fetch(resolveSiteUrl(relativePath));
+    if (!res.ok) {
+      editableJsonCache.set(relativePath, false);
+      return false;
+    }
+    const data = await res.json();
+    const ok = collectStaticLottieColorCKs(data).length > 0;
+    editableJsonCache.set(relativePath, ok);
+    return ok;
+  } catch {
+    editableJsonCache.set(relativePath, false);
+    return false;
+  }
+}
+
+function mountLottieJsonPreview(asset, container, animationData) {
+  const prev = container._lottieAnim;
+  if (prev) {
+    prev.destroy();
+    container._lottieAnim = null;
+  }
+  container.innerHTML = "";
+  const opts = {
+    container,
+    renderer: "canvas",
+    loop: true,
+    autoplay: true,
+    rendererSettings: {
+      clearCanvas: true,
+      progressiveLoad: true,
+    },
+  };
+  if (animationData) {
+    opts.animationData = animationData;
+  } else {
+    opts.path = resolveSiteUrl(asset.path);
+  }
+  try {
+    const anim = lottie.loadAnimation(opts);
+    container._lottieAnim = anim;
+  } catch {
+    container.innerHTML = '<p class="preview-error">JSON 미리보기 실패</p>';
+  }
 }
 
 async function checkPathExists(path) {
@@ -296,7 +426,6 @@ function renderAssets() {
 
   state.filteredAssets.forEach((asset) => {
     const fragment = elements.template.content.cloneNode(true);
-    const card = fragment.querySelector(".asset-card");
     const preview = fragment.querySelector(".preview-area");
 
     const noteEl = fragment.querySelector(".shared-note");
@@ -348,14 +477,35 @@ function renderAssets() {
     if (preview) {
       renderPreview(asset, preview);
     }
-    if (card) {
-      card.dataset.id = asset.id;
+    const cardEl = fragment.querySelector(".asset-card");
+    const editBtn = fragment.querySelector(".edit-json-btn");
+    if (editBtn && asset.type === "json") {
+      jsonHasEditableLottieColors(asset.path).then((ok) => {
+        if (ok) {
+          editBtn.classList.remove("hidden");
+        }
+      });
+      editBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (preview) {
+          openColorEditDialog(asset, preview);
+        }
+      });
+    }
+    if (cardEl) {
+      cardEl.dataset.id = asset.id;
     }
     elements.grid.appendChild(fragment);
   });
 }
 
 function renderPreview(asset, container) {
+  if (container._lottieAnim) {
+    container._lottieAnim.destroy();
+    container._lottieAnim = null;
+  }
+
   if (asset.id === "logo-wehago") {
     const iframe = document.createElement("iframe");
     iframe.className = "preview-iframe";
@@ -369,22 +519,7 @@ function renderPreview(asset, container) {
   }
 
   if (asset.type === "json") {
-    try {
-      container.innerHTML = "";
-      lottie.loadAnimation({
-        container,
-        renderer: "canvas",
-        loop: true,
-        autoplay: true,
-        path: resolveSiteUrl(asset.path),
-        rendererSettings: {
-          clearCanvas: true,
-          progressiveLoad: true,
-        },
-      });
-    } catch {
-      container.innerHTML = '<p class="preview-error">JSON 미리보기 실패</p>';
-    }
+    mountLottieJsonPreview(asset, container, null);
     return;
   }
 
@@ -414,4 +549,149 @@ function renderPreview(asset, container) {
   }
 
   container.innerHTML = '<p class="preview-error">지원하지 않는 타입</p>';
+}
+
+function buildColorEditFieldRows(groups) {
+  const wrap = document.getElementById("colorEditFields");
+  const errEl = document.getElementById("colorEditError");
+  errEl.classList.add("hidden");
+  errEl.textContent = "";
+  wrap.innerHTML = "";
+  groups.forEach((group, index) => {
+    const first = group.refs[0];
+    const hex = rgb01ToHex(first.k[0], first.k[1], first.k[2]);
+    const row = document.createElement("div");
+    row.className = "color-edit-row";
+    const label = document.createElement("label");
+    label.textContent = `색 ${index + 1}`;
+    label.setAttribute("for", `colorEditPicker-${index}`);
+    const input = document.createElement("input");
+    input.type = "color";
+    input.id = `colorEditPicker-${index}`;
+    input.value = hex;
+    input.dataset.groupIndex = String(index);
+    input.addEventListener("input", () => {
+      applyHexToGroup(Number(input.dataset.groupIndex), input.value);
+    });
+    row.appendChild(label);
+    row.appendChild(input);
+    wrap.appendChild(row);
+  });
+}
+
+function applyHexToGroup(groupIndex, hex) {
+  if (!colorEditState) {
+    return;
+  }
+  const rgb = hexToRgb01(hex);
+  if (!rgb) {
+    return;
+  }
+  const group = colorEditState.groups[groupIndex];
+  if (!group) {
+    return;
+  }
+  for (const c of group.refs) {
+    c.k[0] = rgb.r;
+    c.k[1] = rgb.g;
+    c.k[2] = rgb.b;
+  }
+}
+
+async function openColorEditDialog(asset, previewEl) {
+  const dialog = document.getElementById("colorEditDialog");
+  const titleEl = document.getElementById("colorEditAssetTitle");
+  const errEl = document.getElementById("colorEditError");
+  errEl.classList.add("hidden");
+  errEl.textContent = "";
+  titleEl.textContent = asset.title || asset.id || "";
+
+  try {
+    const res = await fetch(resolveSiteUrl(asset.path));
+    if (!res.ok) {
+      throw new Error("fetch");
+    }
+    const workingData = await res.json();
+    const refs = collectStaticLottieColorCKs(workingData);
+    if (refs.length === 0) {
+      window.alert("이 JSON에는 수정 가능한 정적 색상(Lottie Fill/Stroke)이 없습니다.");
+      return;
+    }
+    const groups = groupLottieColorRefs(refs);
+    colorEditState = { asset, previewEl, workingData, groups };
+    buildColorEditFieldRows(groups);
+    dialog.showModal();
+  } catch {
+    window.alert("JSON을 불러오지 못했습니다.");
+  }
+}
+
+function initColorEditDialog() {
+  const dialog = document.getElementById("colorEditDialog");
+  const cancel = document.getElementById("colorEditCancel");
+  const reset = document.getElementById("colorEditReset");
+  const apply = document.getElementById("colorEditApplyPreview");
+  const download = document.getElementById("colorEditDownload");
+
+  cancel.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("close", () => {
+    colorEditState = null;
+  });
+
+  reset.addEventListener("click", async () => {
+    if (!colorEditState) {
+      return;
+    }
+    const { asset, previewEl } = colorEditState;
+    try {
+      const res = await fetch(resolveSiteUrl(asset.path));
+      if (!res.ok) {
+        throw new Error("fetch");
+      }
+      const workingData = await res.json();
+      const refs = collectStaticLottieColorCKs(workingData);
+      if (refs.length === 0) {
+        throw new Error("empty");
+      }
+      const groups = groupLottieColorRefs(refs);
+      colorEditState.workingData = workingData;
+      colorEditState.groups = groups;
+      buildColorEditFieldRows(groups);
+      mountLottieJsonPreview(asset, previewEl, null);
+    } catch {
+      document.getElementById("colorEditError").textContent = "원본을 다시 불러오지 못했습니다.";
+      document.getElementById("colorEditError").classList.remove("hidden");
+    }
+  });
+
+  apply.addEventListener("click", () => {
+    if (!colorEditState) {
+      return;
+    }
+    const { asset, previewEl, workingData } = colorEditState;
+    mountLottieJsonPreview(asset, previewEl, workingData);
+  });
+
+  download.addEventListener("click", () => {
+    if (!colorEditState) {
+      return;
+    }
+    const { asset, workingData } = colorEditState;
+    const rawName = (asset.path || "").split("/").pop() || "lottie.json";
+    const base = rawName.replace(/\.json$/i, "");
+    const filename = `${base}_edited.json`;
+    const blob = new Blob([JSON.stringify(workingData)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
 }

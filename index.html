@@ -62,20 +62,40 @@
       <p id="emptyState" class="empty-state hidden">표시할 에셋이 없습니다.</p>
     </main>
 
+    <dialog id="colorEditDialog" class="color-edit-dialog" aria-labelledby="colorEditDialogTitle">
+      <div class="color-edit-dialog-inner">
+        <h2 id="colorEditDialogTitle" class="color-edit-dialog-title">색상 수정</h2>
+        <p id="colorEditAssetTitle" class="color-edit-asset-title"></p>
+        <div id="colorEditFields" class="color-edit-fields"></div>
+        <p id="colorEditError" class="color-edit-error hidden" role="alert"></p>
+        <div class="color-edit-actions">
+          <button type="button" class="color-edit-btn secondary" id="colorEditCancel">닫기</button>
+          <button type="button" class="color-edit-btn secondary" id="colorEditReset">원래대로</button>
+          <button type="button" class="color-edit-btn primary" id="colorEditApplyPreview">미리보기 적용</button>
+          <button type="button" class="color-edit-btn primary" id="colorEditDownload">JSON 다운로드</button>
+        </div>
+      </div>
+    </dialog>
+
     <template id="assetCardTemplate">
       <article class="asset-card" tabindex="0">
         <div class="preview-shell">
           <div class="preview-area"></div>
-          <div class="download-overlay" aria-label="파일 다운로드 옵션">
-            <div class="download-button-wrap">
-              <a class="download-option download-json" href="#" download aria-label="JSON 파일 다운로드">
-                <img class="download-option-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
-                <span class="download-option-label">JSON</span>
-              </a>
-              <a class="download-option download-png hidden" href="#" download aria-label="PNG 파일 다운로드">
-                <img class="download-option-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
-                <span class="download-option-label">PNG</span>
-              </a>
+          <div class="download-overlay" aria-label="미리보기 작업">
+            <button type="button" class="edit-json-btn hidden" aria-label="JSON 색상 수정">
+              <img class="edit-json-btn-icon" src="./assets/ic_edit.svg" alt="" width="14" height="14" />
+            </button>
+            <div class="download-overlay-bottom">
+              <div class="download-button-wrap">
+                <a class="download-option download-json" href="#" download aria-label="JSON 파일 다운로드">
+                  <img class="download-option-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
+                  <span class="download-option-label">JSON</span>
+                </a>
+                <a class="download-option download-png hidden" href="#" download aria-label="PNG 파일 다운로드">
+                  <img class="download-option-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
+                  <span class="download-option-label">PNG</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
