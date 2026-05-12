@@ -161,6 +161,74 @@ function sortLoaderTabAssets(assets) {
   });
 }
 
+/** Icon 탭: 태그 기준 ONEAI(oneai) → status → service 순. 다중 태그는 oneai > status > service 우선. */
+function iconVisualGroupRank(asset) {
+  const tags = new Set((asset.tags || []).map((t) => String(t).toLowerCase()));
+  if (tags.has("oneai")) {
+    return 0;
+  }
+  if (tags.has("status")) {
+    return 1;
+  }
+  if (tags.has("service")) {
+    return 2;
+  }
+  return 3;
+}
+
+function sortIconTabAssets(assets) {
+  return [...assets].sort((a, b) => {
+    const ra = iconVisualGroupRank(a);
+    const rb = iconVisualGroupRank(b);
+    if (ra !== rb) {
+      return ra - rb;
+    }
+    return (a.path || "").localeCompare(b.path || "", "en");
+  });
+}
+
+function folderSortRankForAll(asset) {
+  const folder = assetFolderFromPath(asset);
+  if (folder === "loader") {
+    return 0;
+  }
+  if (folder === "icon") {
+    return 1;
+  }
+  if (folder === "dobi") {
+    return 2;
+  }
+  return 3;
+}
+
+function subgroupRankForAll(asset) {
+  const folder = assetFolderFromPath(asset);
+  if (folder === "loader") {
+    return loaderVisualGroupRank(asset);
+  }
+  if (folder === "icon") {
+    return iconVisualGroupRank(asset);
+  }
+  return 0;
+}
+
+/** 전체 탭: Loader → Icon → Dobi, 각 폴더는 해당 탭과 동일한 태그 그룹 순 */
+function sortAllTabAssets(assets) {
+  return [...assets].sort((a, b) => {
+    const fa = folderSortRankForAll(a);
+    const fb = folderSortRankForAll(b);
+    if (fa !== fb) {
+      return fa - fb;
+    }
+    const sa = subgroupRankForAll(a);
+    const sb = subgroupRankForAll(b);
+    if (sa !== sb) {
+      return sa - sb;
+    }
+    return (a.path || "").localeCompare(b.path || "", "en");
+  });
+}
+
 function updateCategoryTabLabels() {
   const query = elements.search.value.trim().toLowerCase();
 
@@ -207,6 +275,10 @@ function applyFilters() {
 
   if (state.selectedCategory === "loader") {
     state.filteredAssets = sortLoaderTabAssets(state.filteredAssets);
+  } else if (state.selectedCategory === "icon") {
+    state.filteredAssets = sortIconTabAssets(state.filteredAssets);
+  } else if (state.selectedCategory === "all") {
+    state.filteredAssets = sortAllTabAssets(state.filteredAssets);
   }
 
   updateCategoryTabLabels();
