@@ -253,6 +253,7 @@ select {
   background: #2A2A2A;
   border-radius: 20px;
   overflow: hidden;
+  font-weight: 400;
 }
 
 .preview-area img {
@@ -271,6 +272,7 @@ select {
 .preview-error {
   color: var(--muted);
   font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .card-text-group {
@@ -299,7 +301,7 @@ select {
   background: #444444;
   border-radius: 4px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.4;
   color: #ffffff;
 }

@@ -2,12 +2,43 @@
   "repoUrl": "https://github.com/dain-spec/motion",
   "assets": [
     {
+      "id": "dot-voice",
+      "type": "json",
+      "title": "Dot Voice",
+      "path": "./assets/Loader/dot_voice.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "dot",
+        "voice"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "위하고/말하는 중"
+    },
+    {
+      "id": "ic-loading-s",
+      "type": "json",
+      "title": "IC Loading S",
+      "path": "./assets/Loader/ic_loading_s.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle",
+        "spinner"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "스피너 색상"
+    },
+    {
       "id": "loader",
       "type": "json",
       "title": "Loader",
       "path": "./assets/Loader/loader.json",
       "thumbnail": "",
-      "tags": ["loader", "default", "Circle"],
+      "tags": [
+        "loader",
+        "circle"
+      ],
       "updatedAt": "2026-04-22",
       "note": "로딩 기본"
     },
@@ -17,99 +48,12 @@
       "title": "Loader Data",
       "path": "./assets/Loader/loader_data.json",
       "thumbnail": "",
-      "tags": ["loader", "circle"],
+      "tags": [
+        "loader",
+        "circle"
+      ],
       "updatedAt": "2026-05-11",
       "note": "로딩 블루"
-    },
-    {
-      "id": "loading-gray",
-      "type": "json",
-      "title": "Loading Gray",
-      "path": "./assets/Loader/loading_gray.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-08",
-      "note": "로딩 그레이"
-    },
-    {
-      "id": "loading-16-dark",
-      "type": "json",
-      "title": "Spinner Loading 16 Dark",
-      "path": "./assets/Loader/spinner_loading_16_dark.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "로딩 블루"
-    },
-    {
-      "id": "loading-18",
-      "type": "json",
-      "title": "Spinner Loading 18",
-      "path": "./assets/Loader/spinner_loading_18.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "로딩 화이트"
-    },
-    {
-      "id": "loading-24",
-      "type": "json",
-      "title": "Loading",
-      "path": "./assets/Loader/spinner_loading_24.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "로딩 블루"
-    },
-    {
-      "id": "s-loading",
-      "type": "json",
-      "title": "S Loading",
-      "path": "./assets/Loader/s_loading.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "로딩 색상"
-    },
-    {
-      "id": "loading-circle",
-      "type": "json",
-      "title": "Loading Circle",
-      "path": "./assets/Loader/loading_circle.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle", "spinner"],
-      "updatedAt": "2026-05-08",
-      "note": "스피너 기본"
-    },
-    {
-      "id": "ic-loading-s",
-      "type": "json",
-      "title": "IC Loading S",
-      "path": "./assets/Loader/ic_loading_s.json",
-      "thumbnail": "",
-      "tags": ["loader", "circle", "spinner"],
-      "updatedAt": "2026-05-11",
-      "note": "스피너 색상"
-    },
-    {
-      "id": "spinner-loading",
-      "type": "json",
-      "title": "Spinner Loading",
-      "path": "./assets/Loader/spinner_loading.json",
-      "thumbnail": "",
-      "tags": ["loader", "spinner", "circle"],
-      "updatedAt": "2026-05-11",
-      "note": "스피너 기본"
-    },
-    {
-      "id": "dot-voice",
-      "type": "json",
-      "title": "Dot Voice",
-      "path": "./assets/Loader/dot_voice.json",
-      "thumbnail": "",
-      "tags": ["loader", "dot", "voice"],
-      "updatedAt": "2026-05-11",
-      "note": "위하고/말하는 중"
     },
     {
       "id": "loader-dot",
@@ -117,7 +61,10 @@
       "title": "Loader Dot",
       "path": "./assets/Loader/loader_dot.json",
       "thumbnail": "",
-      "tags": ["loader", "dot"],
+      "tags": [
+        "loader",
+        "dot"
+      ],
       "updatedAt": "2026-05-07",
       "note": "위하고/화상회의/대기중"
     },
@@ -127,19 +74,12 @@
       "title": "Loader Dot Answer",
       "path": "./assets/Loader/loader_dot_answer.json",
       "thumbnail": "",
-      "tags": ["loader", "dot", "answer"],
+      "tags": [
+        "loader",
+        "dot"
+      ],
       "updatedAt": "2026-05-07",
       "note": "위하고/위봇/대기중"
-    },
-    {
-      "id": "loading-dot-blue",
-      "type": "json",
-      "title": "Loading Dot Blue",
-      "path": "./assets/Loader/loading_dot_blue.json",
-      "thumbnail": "",
-      "tags": ["loader", "dot"],
-      "updatedAt": "2026-05-08",
-      "note": "위하고/화상회의/대기중"
     },
     {
       "id": "loading-generic",
@@ -147,9 +87,65 @@
       "title": "Loading",
       "path": "./assets/Loader/loading.json",
       "thumbnail": "",
-      "tags": ["loader", "dot"],
+      "tags": [
+        "loader",
+        "dot"
+      ],
       "updatedAt": "2026-05-11",
-      "note": "아마란스/ONE AI/분석 중"
+      "note": "아마란스10/ONE AI/분석 중"
+    },
+    {
+      "id": "loading-circle",
+      "type": "json",
+      "title": "Loading Circle",
+      "path": "./assets/Loader/loading_circle.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle",
+        "spinner"
+      ],
+      "updatedAt": "2026-05-08",
+      "note": "스피너 기본"
+    },
+    {
+      "id": "loading-dot-32",
+      "type": "json",
+      "title": "Loading Dot 32",
+      "path": "./assets/Loader/loading_dot_32.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "dot"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "loading-dot-blue",
+      "type": "json",
+      "title": "Loading Dot Blue",
+      "path": "./assets/Loader/loading_dot_blue.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "dot"
+      ],
+      "updatedAt": "2026-05-08",
+      "note": "위하고/화상회의/대기중"
+    },
+    {
+      "id": "loading-gray",
+      "type": "json",
+      "title": "Loading Gray",
+      "path": "./assets/Loader/loading_gray.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle"
+      ],
+      "updatedAt": "2026-05-08",
+      "note": "로딩 그레이"
     },
     {
       "id": "loading-record",
@@ -157,9 +153,91 @@
       "title": "Loading Record",
       "path": "./assets/Loader/loading_record.json",
       "thumbnail": "",
-      "tags": ["loader", "dot"],
+      "tags": [
+        "loader",
+        "dot"
+      ],
       "updatedAt": "2026-05-11",
-      "note": "아마란스/ONE AI/녹음 중"
+      "note": "아마란스10/ONE AI/녹음 중"
+    },
+    {
+      "id": "s-loading",
+      "type": "json",
+      "title": "S Loading",
+      "path": "./assets/Loader/s_loading.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "로딩 색상"
+    },
+    {
+      "id": "spinner-loading",
+      "type": "json",
+      "title": "Spinner Loading",
+      "path": "./assets/Loader/spinner_loading.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "spinner",
+        "circle"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "스피너 기본"
+    },
+    {
+      "id": "loading-16-dark",
+      "type": "json",
+      "title": "Spinner Loading 16 Dark",
+      "path": "./assets/Loader/spinner_loading_16_dark.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "로딩 블루"
+    },
+    {
+      "id": "loading-18",
+      "type": "json",
+      "title": "Spinner Loading 18",
+      "path": "./assets/Loader/spinner_loading_18.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "로딩 화이트"
+    },
+    {
+      "id": "loading-24",
+      "type": "json",
+      "title": "Loading",
+      "path": "./assets/Loader/spinner_loading_24.json",
+      "thumbnail": "",
+      "tags": [
+        "loader",
+        "circle"
+      ],
+      "updatedAt": "2026-05-11",
+      "note": "로딩 블루"
+    },
+    {
+      "id": "ic-oneai-analysis",
+      "type": "json",
+      "title": "IC ONE AI Analysis",
+      "path": "./assets/Icon/ic_ONEAI_analysis.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "oneai"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
     },
     {
       "id": "ic-analysis",
@@ -167,9 +245,36 @@
       "title": "IC Analysis",
       "path": "./assets/Icon/ic_analysis.json",
       "thumbnail": "",
-      "tags": ["icon", "analysis"],
+      "tags": [
+        "icon",
+        "analysis"
+      ],
       "updatedAt": "2026-05-11",
-      "note": "아마란스/ONE AI/분석"
+      "note": "아마란스10/ONE AI/분석"
+    },
+    {
+      "id": "ic-card-scan",
+      "type": "json",
+      "title": "IC Card Scan",
+      "path": "./assets/Icon/ic_card_scan.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-card-scan-completed",
+      "type": "json",
+      "title": "IC Card Scan Completed",
+      "path": "./assets/Icon/ic_card_scan_completed.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
     },
     {
       "id": "ic-check-16-gn",
@@ -177,9 +282,101 @@
       "title": "IC Check 16 Green",
       "path": "./assets/Icon/ic_check_16_gn.json",
       "thumbnail": "",
-      "tags": ["icon", "check"],
+      "tags": [
+        "icon",
+        "check"
+      ],
       "updatedAt": "2026-05-11",
-      "note": "아마란스/ONE AI/완료"
+      "note": "아마란스10/ONE AI/완료"
+    },
+    {
+      "id": "ic-check-circle-outlined-32-bl",
+      "type": "json",
+      "title": "IC Check Circle Outlined 32 Bl",
+      "path": "./assets/Icon/ic_check_circle_outlined_32_bl.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "check"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-check-circle-outlined-32-gn",
+      "type": "json",
+      "title": "IC Check Circle Outlined 32 Gn",
+      "path": "./assets/Icon/ic_check_circle_outlined_32_gn.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "check"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-check-red",
+      "type": "json",
+      "title": "IC Check Red",
+      "path": "./assets/Icon/ic_check_red.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "check"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-close-circle-outlined-32-re",
+      "type": "json",
+      "title": "IC Close Circle Outlined 32 Re",
+      "path": "./assets/Icon/ic_close_circle_outlined_32_re.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-dots-loop",
+      "type": "json",
+      "title": "IC Dots Loop",
+      "path": "./assets/Icon/ic_dots_loop.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-error",
+      "type": "json",
+      "title": "IC Error",
+      "path": "./assets/Icon/ic_error.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "status"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-error-triangle-outlined-32-ye",
+      "type": "json",
+      "title": "IC Error Triangle Outlined 32 Ye",
+      "path": "./assets/Icon/ic_error_triangle_outlined_32_ye.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "status"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
     },
     {
       "id": "ic-generating",
@@ -187,9 +384,47 @@
       "title": "IC Generating",
       "path": "./assets/Icon/ic_generating.json",
       "thumbnail": "",
-      "tags": ["icon"],
+      "tags": [
+        "icon"
+      ],
       "updatedAt": "2026-05-11",
-      "note": "아마란스/ONE AI/생성 중"
+      "note": "아마란스10/ONE AI/생성 중"
+    },
+    {
+      "id": "ic-goout",
+      "type": "json",
+      "title": "IC Goout",
+      "path": "./assets/Icon/ic_goout.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-header-logo",
+      "type": "json",
+      "title": "IC Header Logo",
+      "path": "./assets/Icon/ic_header_logo.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-info",
+      "type": "json",
+      "title": "IC Info",
+      "path": "./assets/Icon/ic_info.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
     },
     {
       "id": "ic-listen-32-wh",
@@ -197,9 +432,216 @@
       "title": "IC Listen 32 White",
       "path": "./assets/Icon/ic_listen_32_wh.json",
       "thumbnail": "",
-      "tags": ["icon"],
+      "tags": [
+        "icon"
+      ],
       "updatedAt": "2026-05-11",
-      "note": "아마란스/ONE AI/말하는 중"
+      "note": "아마란스10/ONE AI/말하는 중"
+    },
+    {
+      "id": "ic-loading-72-loop",
+      "type": "json",
+      "title": "IC Loading 72 Loop",
+      "path": "./assets/Icon/ic_loading_72_loop.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "loading"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-loading-login-200-loop",
+      "type": "json",
+      "title": "IC Loading Login 200 Loop",
+      "path": "./assets/Icon/ic_loading_login_200_loop.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "loading"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-loading-step2",
+      "type": "json",
+      "title": "IC Loading Step2",
+      "path": "./assets/Icon/ic_loading_step2.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "loading"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-loading-step4",
+      "type": "json",
+      "title": "IC Loading Step4",
+      "path": "./assets/Icon/ic_loading_step4.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "loading"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-lock-open-24",
+      "type": "json",
+      "title": "IC Lock Open 24",
+      "path": "./assets/Icon/ic_lock_open_24.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-logout-outlined-32-bl",
+      "type": "json",
+      "title": "IC Logout Outlined 32 Bl",
+      "path": "./assets/Icon/ic_logout_outlined_32_bl.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-oneai-header",
+      "type": "image",
+      "title": "IC ONE AI Header",
+      "path": "./assets/Icon/ic_oneai_header.png",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "oneai",
+        "header"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon01",
+      "type": "json",
+      "title": "IC Service Icon01",
+      "path": "./assets/Icon/ic_service_icon01.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon02",
+      "type": "json",
+      "title": "IC Service Icon02",
+      "path": "./assets/Icon/ic_service_icon02.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon03",
+      "type": "json",
+      "title": "IC Service Icon03",
+      "path": "./assets/Icon/ic_service_icon03.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon04",
+      "type": "json",
+      "title": "IC Service Icon04",
+      "path": "./assets/Icon/ic_service_icon04.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon05",
+      "type": "json",
+      "title": "IC Service Icon05",
+      "path": "./assets/Icon/ic_service_icon05.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon06",
+      "type": "json",
+      "title": "IC Service Icon06",
+      "path": "./assets/Icon/ic_service_icon06.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-service-icon07",
+      "type": "json",
+      "title": "IC Service Icon07",
+      "path": "./assets/Icon/ic_service_icon07.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "service"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-success",
+      "type": "json",
+      "title": "IC Success",
+      "path": "./assets/Icon/ic_success.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "ic-t-pdf",
+      "type": "json",
+      "title": "IC T PDF",
+      "path": "./assets/Icon/ic_t_pdf.json",
+      "thumbnail": "",
+      "tags": [
+        "icon"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
     },
     {
       "id": "ic-warning",
@@ -207,9 +649,94 @@
       "title": "IC Warning",
       "path": "./assets/Icon/ic_warning.json",
       "thumbnail": "",
-      "tags": ["icon", "warning"],
+      "tags": [
+        "icon",
+        "warning"
+      ],
       "updatedAt": "2026-05-11",
       "note": "아마란스10/경고"
+    },
+    {
+      "id": "ic-warning-ye",
+      "type": "json",
+      "title": "IC Warning Ye",
+      "path": "./assets/Icon/ic_warning_ye.json",
+      "thumbnail": "",
+      "tags": [
+        "icon",
+        "status"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "-"
+    },
+    {
+      "id": "dobe-meet-summary",
+      "type": "json",
+      "title": "Meet Summary",
+      "path": "./assets/Dobi/Dobe_Meet_summary.json",
+      "thumbnail": "",
+      "tags": [
+        "dobi",
+        "meet",
+        "summary"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "위하고/화상회의/요약"
+    },
+    {
+      "id": "dobi-expert1-completed",
+      "type": "image",
+      "title": "Dobi Expert1 Completed",
+      "path": "./assets/Dobi/Dobi_Expert1_completed.png",
+      "thumbnail": "",
+      "tags": [
+        "dobi",
+        "expert"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "Expert1/완료"
+    },
+    {
+      "id": "dobi-expert1-document",
+      "type": "image",
+      "title": "Dobi Expert1 Document",
+      "path": "./assets/Dobi/Dobi_Expert1_document.png",
+      "thumbnail": "",
+      "tags": [
+        "dobi",
+        "expert",
+        "document"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "Expert1/문서"
+    },
+    {
+      "id": "dobi-expert1-inprogress",
+      "type": "image",
+      "title": "Dobi Expert1 In Progress",
+      "path": "./assets/Dobi/Dobi_Expert1_inprogress.png",
+      "thumbnail": "",
+      "tags": [
+        "dobi",
+        "expert",
+        "progress"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "Expert1/진행 중"
+    },
+    {
+      "id": "dobi-expert1-welcome",
+      "type": "image",
+      "title": "Dobi Expert1 Welcome",
+      "path": "./assets/Dobi/Dobi_Expert1_welcome.png",
+      "thumbnail": "",
+      "tags": [
+        "dobi",
+        "expert",
+        "welcome"
+      ],
+      "updatedAt": "2026-05-12",
+      "note": "Expert1/환영"
     },
     {
       "id": "dobi-guide",
@@ -217,7 +744,10 @@
       "title": "Dobi Guide",
       "path": "./assets/Dobi/Dobi_Guide.png",
       "thumbnail": "",
-      "tags": ["dobi", "guide"],
+      "tags": [
+        "dobi",
+        "guide"
+      ],
       "updatedAt": "2026-05-12",
       "note": "위하고/이용가이드"
     }
