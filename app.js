@@ -553,29 +553,48 @@ function renderPreview(asset, container) {
 
 function buildColorEditFieldRows(groups) {
   const wrap = document.getElementById("colorEditFields");
+  const dialog = document.getElementById("colorEditDialog");
   const errEl = document.getElementById("colorEditError");
   errEl.classList.add("hidden");
   errEl.textContent = "";
   wrap.innerHTML = "";
+  dialog.style.setProperty("--color-count", String(Math.max(1, groups.length)));
+
   groups.forEach((group, index) => {
     const first = group.refs[0];
     const hex = rgb01ToHex(first.k[0], first.k[1], first.k[2]);
-    const row = document.createElement("div");
-    row.className = "color-edit-row";
+    const item = document.createElement("div");
+    item.className = "color-edit-swatch-item";
+
     const label = document.createElement("label");
-    label.textContent = `색 ${index + 1}`;
+    label.className = "color-edit-swatch-label";
     label.setAttribute("for", `colorEditPicker-${index}`);
+
     const input = document.createElement("input");
     input.type = "color";
+    input.className = "color-edit-swatch-input";
     input.id = `colorEditPicker-${index}`;
     input.value = hex;
     input.dataset.groupIndex = String(index);
+
+    const swatchVisual = document.createElement("span");
+    swatchVisual.className = "color-edit-swatch-visual";
+    swatchVisual.style.backgroundColor = hex;
+
+    const caption = document.createElement("p");
+    caption.className = "color-edit-swatch-caption";
+    caption.textContent = `Color ${index + 1}`;
+
     input.addEventListener("input", () => {
       applyHexToGroup(Number(input.dataset.groupIndex), input.value);
+      swatchVisual.style.backgroundColor = input.value;
     });
-    row.appendChild(label);
-    row.appendChild(input);
-    wrap.appendChild(row);
+
+    label.appendChild(input);
+    label.appendChild(swatchVisual);
+    item.appendChild(label);
+    item.appendChild(caption);
+    wrap.appendChild(item);
   });
 }
 
@@ -598,13 +617,27 @@ function applyHexToGroup(groupIndex, hex) {
   }
 }
 
+function resetColorEditDialogTheme() {
+  const themeToggle = document.getElementById("colorEditThemeToggle");
+  const prevArea = document.getElementById("colorEditDialogPreview");
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-checked", "true");
+  }
+  if (prevArea) {
+    prevArea.classList.remove("is-preview-light");
+  }
+}
+
 async function openColorEditDialog(asset, previewEl) {
   const dialog = document.getElementById("colorEditDialog");
-  const titleEl = document.getElementById("colorEditAssetTitle");
+  const dialogPreview = document.getElementById("colorEditDialogPreview");
+  const fileNameEl = document.getElementById("colorEditFileName");
   const errEl = document.getElementById("colorEditError");
   errEl.classList.add("hidden");
   errEl.textContent = "";
-  titleEl.textContent = asset.title || asset.id || "";
+  const rawName = (asset.path || "").split("/").pop() || "animation.json";
+  fileNameEl.textContent = rawName;
+  resetColorEditDialogTheme();
 
   try {
     const res = await fetch(resolveSiteUrl(asset.path));
@@ -620,6 +653,7 @@ async function openColorEditDialog(asset, previewEl) {
     const groups = groupLottieColorRefs(refs);
     colorEditState = { asset, previewEl, workingData, groups };
     buildColorEditFieldRows(groups);
+    mountLottieJsonPreview(asset, dialogPreview, workingData);
     dialog.showModal();
   } catch {
     window.alert("JSON을 불러오지 못했습니다.");
@@ -628,17 +662,35 @@ async function openColorEditDialog(asset, previewEl) {
 
 function initColorEditDialog() {
   const dialog = document.getElementById("colorEditDialog");
-  const cancel = document.getElementById("colorEditCancel");
+  const closeBtn = document.getElementById("colorEditClose");
+  const themeToggle = document.getElementById("colorEditThemeToggle");
+  const dialogPreview = document.getElementById("colorEditDialogPreview");
   const reset = document.getElementById("colorEditReset");
   const apply = document.getElementById("colorEditApplyPreview");
   const download = document.getElementById("colorEditDownload");
+  const copyFigma = document.getElementById("colorEditCopyFigma");
+  const copyFigmaLabel = document.getElementById("colorEditCopyFigmaLabel");
 
-  cancel.addEventListener("click", () => {
+  closeBtn.addEventListener("click", () => {
     dialog.close();
   });
 
   dialog.addEventListener("close", () => {
+    if (dialogPreview && dialogPreview._lottieAnim) {
+      dialogPreview._lottieAnim.destroy();
+      dialogPreview._lottieAnim = null;
+    }
+    if (dialogPreview) {
+      dialogPreview.innerHTML = "";
+    }
     colorEditState = null;
+  });
+
+  themeToggle.addEventListener("click", () => {
+    const darkOn = themeToggle.getAttribute("aria-checked") === "true";
+    const nextDarkOn = !darkOn;
+    themeToggle.setAttribute("aria-checked", nextDarkOn ? "true" : "false");
+    dialogPreview.classList.toggle("is-preview-light", !nextDarkOn);
   });
 
   reset.addEventListener("click", async () => {
@@ -660,7 +712,9 @@ function initColorEditDialog() {
       colorEditState.workingData = workingData;
       colorEditState.groups = groups;
       buildColorEditFieldRows(groups);
+      resetColorEditDialogTheme();
       mountLottieJsonPreview(asset, previewEl, null);
+      mountLottieJsonPreview(asset, dialogPreview, workingData);
     } catch {
       document.getElementById("colorEditError").textContent = "원본을 다시 불러오지 못했습니다.";
       document.getElementById("colorEditError").classList.remove("hidden");
@@ -673,6 +727,7 @@ function initColorEditDialog() {
     }
     const { asset, previewEl, workingData } = colorEditState;
     mountLottieJsonPreview(asset, previewEl, workingData);
+    mountLottieJsonPreview(asset, dialogPreview, workingData);
   });
 
   download.addEventListener("click", () => {
@@ -693,5 +748,25 @@ function initColorEditDialog() {
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
+  });
+
+  copyFigma.addEventListener("click", async () => {
+    if (!colorEditState || !copyFigmaLabel) {
+      return;
+    }
+    const errEl = document.getElementById("colorEditError");
+    const text = JSON.stringify(colorEditState.workingData);
+    const copyFigmaDefaultLabel = "Copy to Figma";
+    try {
+      await navigator.clipboard.writeText(text);
+      copyFigmaLabel.textContent = "클립보드에 복사됨";
+      errEl.classList.add("hidden");
+      window.setTimeout(() => {
+        copyFigmaLabel.textContent = copyFigmaDefaultLabel;
+      }, 1600);
+    } catch {
+      errEl.textContent = "클립보드 복사에 실패했습니다. 브라우저 권한을 확인해주세요.";
+      errEl.classList.remove("hidden");
+    }
   });
 }

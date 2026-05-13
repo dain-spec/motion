@@ -62,17 +62,68 @@
       <p id="emptyState" class="empty-state hidden">표시할 에셋이 없습니다.</p>
     </main>
 
-    <dialog id="colorEditDialog" class="color-edit-dialog" aria-labelledby="colorEditDialogTitle">
-      <div class="color-edit-dialog-inner">
-        <h2 id="colorEditDialogTitle" class="color-edit-dialog-title">색상 수정</h2>
-        <p id="colorEditAssetTitle" class="color-edit-asset-title"></p>
-        <div id="colorEditFields" class="color-edit-fields"></div>
+    <dialog id="colorEditDialog" class="color-edit-dialog" aria-label="색상 수정">
+      <div class="color-edit-dialog-surface">
+        <button type="button" class="color-edit-dialog-close" id="colorEditClose" aria-label="닫기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <div class="color-edit-dialog-main">
+          <div class="color-edit-toggle-row">
+            <span class="color-edit-toggle-label" id="colorEditThemeLabel">Dark</span>
+            <button
+              type="button"
+              class="color-edit-theme-switch"
+              id="colorEditThemeToggle"
+              role="switch"
+              aria-checked="true"
+              aria-labelledby="colorEditThemeLabel"
+            >
+              <span class="color-edit-theme-switch-track" aria-hidden="true">
+                <span class="color-edit-theme-switch-thumb"></span>
+              </span>
+            </button>
+          </div>
+
+          <div class="color-edit-preview-stack">
+            <div id="colorEditDialogPreview" class="color-edit-dialog-preview-area"></div>
+            <p id="colorEditFileName" class="color-edit-filename"></p>
+          </div>
+
+          <div id="colorEditFields" class="color-edit-swatch-row" role="group" aria-label="색상"></div>
+        </div>
+
         <p id="colorEditError" class="color-edit-error hidden" role="alert"></p>
-        <div class="color-edit-actions">
-          <button type="button" class="color-edit-btn secondary" id="colorEditCancel">닫기</button>
-          <button type="button" class="color-edit-btn secondary" id="colorEditReset">원래대로</button>
-          <button type="button" class="color-edit-btn primary" id="colorEditApplyPreview">미리보기 적용</button>
-          <button type="button" class="color-edit-btn primary" id="colorEditDownload">JSON 다운로드</button>
+
+        <div class="color-edit-dialog-footer">
+          <div class="color-edit-footer-buttons">
+            <button type="button" class="color-edit-footer-btn" id="colorEditReset">원래대로</button>
+            <button type="button" class="color-edit-footer-btn" id="colorEditApplyPreview">미리보기</button>
+            <button type="button" class="color-edit-footer-btn color-edit-footer-btn--download" id="colorEditDownload">
+              <img class="color-edit-footer-btn-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
+              JSON 다운로드
+            </button>
+          </div>
+          <button type="button" class="color-edit-figma-copy" id="colorEditCopyFigma">
+            <svg
+              class="color-edit-figma-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path d="M5.33 10.67a2.33 2.33 0 0 1-2.33-2.34V5.67a2.33 2.33 0 0 1 2.33-2.34h2.34v7.34H5.33z" fill="#0ACF83" />
+              <path d="M5.33 3.33h2.34v4.67H5.33a2.33 2.33 0 1 1 0-4.67z" fill="#A259FF" />
+              <path d="M10.67 8H7.67V3.33h3a2.33 2.33 0 0 1 0 4.67z" fill="#1ABCFE" />
+              <path d="M10.67 8a2.33 2.33 0 1 1 0 4.67A2.33 2.33 0 0 1 10.67 8z" fill="#1ABCFE" />
+              <path d="M7.67 8h3v4.67h-3A2.33 2.33 0 0 1 7.67 8z" fill="#F24E1E" />
+            </svg>
+            <span id="colorEditCopyFigmaLabel">Copy to Figma</span>
+          </button>
         </div>
       </div>
     </dialog>
