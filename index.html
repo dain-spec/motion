@@ -99,13 +99,16 @@
 
         <div class="color-edit-dialog-footer">
           <div class="color-edit-footer-buttons">
-            <button type="button" class="color-edit-footer-btn" id="colorEditReset">원래대로</button>
-            <button type="button" class="color-edit-footer-btn" id="colorEditApplyPreview">미리보기</button>
+            <button type="button" class="color-edit-footer-btn" id="colorEditCancel">취소</button>
             <button type="button" class="color-edit-footer-btn color-edit-footer-btn--download" id="colorEditDownload">
               <img class="color-edit-footer-btn-icon" src="./assets/ic_download.svg" alt="" width="14" height="14" />
               JSON 다운로드
             </button>
           </div>
+          <p class="color-edit-figma-hint">
+            Lottie JSON은 Figma에 붙여넣어도 벡터 도형으로 변환되지 않습니다. 아래 버튼은 다이얼로그 미리보기와 동일한
+            <strong>SVG 마크업</strong>을 클립보드에 넣으며, Figma·OS에 따라 한 번에 벡터로 붙여넣기 될 수 있습니다.
+          </p>
           <button type="button" class="color-edit-figma-copy" id="colorEditCopyFigma">
             <svg
               class="color-edit-figma-icon"

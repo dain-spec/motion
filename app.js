@@ -18,8 +18,10 @@ const elements = {
   repoLink: document.getElementById("repoLink"),
 };
 
-/** @type {{ asset: object, previewEl: HTMLElement, workingData: object, groups: { refs: object[] }[] } | null} */
+/** @type {{ asset: object, workingData: object, groups: { refs: object[] }[] } | null} */
 let colorEditState = null;
+
+let colorEditDialogPreviewFrame = null;
 
 init().catch((error) => {
   if (elements.empty) {
@@ -160,31 +162,61 @@ async function jsonHasEditableLottieColors(relativePath) {
   }
 }
 
+function cloneLottieAnimationData(data) {
+  return JSON.parse(JSON.stringify(data));
+}
+
 function mountLottieJsonPreview(asset, container, animationData) {
+  if (container._lottieResizeObserver) {
+    container._lottieResizeObserver.disconnect();
+    container._lottieResizeObserver = null;
+  }
   const prev = container._lottieAnim;
   if (prev) {
     prev.destroy();
     container._lottieAnim = null;
   }
   container.innerHTML = "";
+  const host = document.createElement("div");
+  host.className = "lottie-mount-host";
+  container.appendChild(host);
   const opts = {
-    container,
-    renderer: "canvas",
+    container: host,
+    renderer: "svg",
     loop: true,
     autoplay: true,
     rendererSettings: {
-      clearCanvas: true,
-      progressiveLoad: true,
+      progressiveLoad: false,
+      preserveAspectRatio: "xMidYMid meet",
     },
   };
   if (animationData) {
-    opts.animationData = animationData;
+    opts.animationData = cloneLottieAnimationData(animationData);
   } else {
     opts.path = resolveSiteUrl(asset.path);
   }
   try {
     const anim = lottie.loadAnimation(opts);
     container._lottieAnim = anim;
+    const resizeAnim = () => {
+      try {
+        if (typeof anim.resize === "function") {
+          anim.resize();
+        }
+      } catch {
+        /* ignore */
+      }
+    };
+    anim.addEventListener("DOMLoaded", resizeAnim);
+    anim.addEventListener("data_ready", resizeAnim);
+    requestAnimationFrame(resizeAnim);
+    if (typeof ResizeObserver !== "undefined") {
+      const ro = new ResizeObserver(() => {
+        resizeAnim();
+      });
+      ro.observe(host);
+      container._lottieResizeObserver = ro;
+    }
   } catch {
     container.innerHTML = '<p class="preview-error">JSON 미리보기 실패</p>';
   }
@@ -501,6 +533,10 @@ function renderAssets() {
 }
 
 function renderPreview(asset, container) {
+  if (container._lottieResizeObserver) {
+    container._lottieResizeObserver.disconnect();
+    container._lottieResizeObserver = null;
+  }
   if (container._lottieAnim) {
     container._lottieAnim.destroy();
     container._lottieAnim = null;
@@ -588,6 +624,7 @@ function buildColorEditFieldRows(groups) {
     input.addEventListener("input", () => {
       applyHexToGroup(Number(input.dataset.groupIndex), input.value);
       swatchVisual.style.backgroundColor = input.value;
+      scheduleColorEditDialogPreviewRefresh();
     });
 
     label.appendChild(input);
@@ -617,6 +654,70 @@ function applyHexToGroup(groupIndex, hex) {
   }
 }
 
+function scheduleColorEditDialogPreviewRefresh() {
+  if (!colorEditState) {
+    return;
+  }
+  if (colorEditDialogPreviewFrame !== null) {
+    cancelAnimationFrame(colorEditDialogPreviewFrame);
+  }
+  colorEditDialogPreviewFrame = requestAnimationFrame(() => {
+    colorEditDialogPreviewFrame = null;
+    const dialogPreview = document.getElementById("colorEditDialogPreview");
+    if (!dialogPreview || !colorEditState) {
+      return;
+    }
+    const { asset, workingData } = colorEditState;
+    mountLottieJsonPreview(asset, dialogPreview, workingData);
+  });
+}
+
+async function copyColorEditDialogSvgForFigma() {
+  const dialogPreview = document.getElementById("colorEditDialogPreview");
+  const errEl = document.getElementById("colorEditError");
+  const svgEl = dialogPreview?.querySelector(".lottie-mount-host svg");
+  if (!svgEl) {
+    if (errEl) {
+      errEl.textContent = "복사할 SVG가 없습니다. 미리보기가 뜬 뒤 다시 시도해 주세요.";
+      errEl.classList.remove("hidden");
+    }
+    return false;
+  }
+  let markup = svgEl.outerHTML;
+  if (!/\sxmlns\s*=/.test(markup)) {
+    markup = markup.replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ');
+  }
+  try {
+    if (navigator.clipboard.write && typeof ClipboardItem !== "undefined") {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            "text/html": new Blob([markup], { type: "text/html" }),
+            "text/plain": new Blob([markup], { type: "text/plain;charset=utf-8" }),
+          }),
+        ]);
+        if (errEl) {
+          errEl.classList.add("hidden");
+        }
+        return true;
+      } catch {
+        /* fall through to writeText */
+      }
+    }
+    await navigator.clipboard.writeText(markup);
+    if (errEl) {
+      errEl.classList.add("hidden");
+    }
+    return true;
+  } catch {
+    if (errEl) {
+      errEl.textContent = "클립보드 복사에 실패했습니다. 브라우저 권한을 확인해 주세요.";
+      errEl.classList.remove("hidden");
+    }
+    return false;
+  }
+}
+
 function resetColorEditDialogTheme() {
   const themeToggle = document.getElementById("colorEditThemeToggle");
   const prevArea = document.getElementById("colorEditDialogPreview");
@@ -629,6 +730,10 @@ function resetColorEditDialogTheme() {
 }
 
 async function openColorEditDialog(asset, previewEl) {
+  if (colorEditDialogPreviewFrame !== null) {
+    cancelAnimationFrame(colorEditDialogPreviewFrame);
+    colorEditDialogPreviewFrame = null;
+  }
   const dialog = document.getElementById("colorEditDialog");
   const dialogPreview = document.getElementById("colorEditDialogPreview");
   const fileNameEl = document.getElementById("colorEditFileName");
@@ -651,10 +756,14 @@ async function openColorEditDialog(asset, previewEl) {
       return;
     }
     const groups = groupLottieColorRefs(refs);
-    colorEditState = { asset, previewEl, workingData, groups };
+    colorEditState = { asset, workingData, groups };
     buildColorEditFieldRows(groups);
-    mountLottieJsonPreview(asset, dialogPreview, workingData);
     dialog.showModal();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        mountLottieJsonPreview(asset, dialogPreview, workingData);
+      });
+    });
   } catch {
     window.alert("JSON을 불러오지 못했습니다.");
   }
@@ -665,8 +774,6 @@ function initColorEditDialog() {
   const closeBtn = document.getElementById("colorEditClose");
   const themeToggle = document.getElementById("colorEditThemeToggle");
   const dialogPreview = document.getElementById("colorEditDialogPreview");
-  const reset = document.getElementById("colorEditReset");
-  const apply = document.getElementById("colorEditApplyPreview");
   const download = document.getElementById("colorEditDownload");
   const copyFigma = document.getElementById("colorEditCopyFigma");
   const copyFigmaLabel = document.getElementById("colorEditCopyFigmaLabel");
@@ -676,6 +783,14 @@ function initColorEditDialog() {
   });
 
   dialog.addEventListener("close", () => {
+    if (colorEditDialogPreviewFrame !== null) {
+      cancelAnimationFrame(colorEditDialogPreviewFrame);
+      colorEditDialogPreviewFrame = null;
+    }
+    if (dialogPreview && dialogPreview._lottieResizeObserver) {
+      dialogPreview._lottieResizeObserver.disconnect();
+      dialogPreview._lottieResizeObserver = null;
+    }
     if (dialogPreview && dialogPreview._lottieAnim) {
       dialogPreview._lottieAnim.destroy();
       dialogPreview._lottieAnim = null;
@@ -693,41 +808,9 @@ function initColorEditDialog() {
     dialogPreview.classList.toggle("is-preview-light", !nextDarkOn);
   });
 
-  reset.addEventListener("click", async () => {
-    if (!colorEditState) {
-      return;
-    }
-    const { asset, previewEl } = colorEditState;
-    try {
-      const res = await fetch(resolveSiteUrl(asset.path));
-      if (!res.ok) {
-        throw new Error("fetch");
-      }
-      const workingData = await res.json();
-      const refs = collectStaticLottieColorCKs(workingData);
-      if (refs.length === 0) {
-        throw new Error("empty");
-      }
-      const groups = groupLottieColorRefs(refs);
-      colorEditState.workingData = workingData;
-      colorEditState.groups = groups;
-      buildColorEditFieldRows(groups);
-      resetColorEditDialogTheme();
-      mountLottieJsonPreview(asset, previewEl, null);
-      mountLottieJsonPreview(asset, dialogPreview, workingData);
-    } catch {
-      document.getElementById("colorEditError").textContent = "원본을 다시 불러오지 못했습니다.";
-      document.getElementById("colorEditError").classList.remove("hidden");
-    }
-  });
-
-  apply.addEventListener("click", () => {
-    if (!colorEditState) {
-      return;
-    }
-    const { asset, previewEl, workingData } = colorEditState;
-    mountLottieJsonPreview(asset, previewEl, workingData);
-    mountLottieJsonPreview(asset, dialogPreview, workingData);
+  const cancelBtn = document.getElementById("colorEditCancel");
+  cancelBtn.addEventListener("click", () => {
+    dialog.close();
   });
 
   download.addEventListener("click", () => {
@@ -754,19 +837,13 @@ function initColorEditDialog() {
     if (!colorEditState || !copyFigmaLabel) {
       return;
     }
-    const errEl = document.getElementById("colorEditError");
-    const text = JSON.stringify(colorEditState.workingData);
     const copyFigmaDefaultLabel = "Copy to Figma";
-    try {
-      await navigator.clipboard.writeText(text);
-      copyFigmaLabel.textContent = "클립보드에 복사됨";
-      errEl.classList.add("hidden");
+    const ok = await copyColorEditDialogSvgForFigma();
+    if (ok) {
+      copyFigmaLabel.textContent = "SVG 복사됨";
       window.setTimeout(() => {
         copyFigmaLabel.textContent = copyFigmaDefaultLabel;
       }, 1600);
-    } catch {
-      errEl.textContent = "클립보드 복사에 실패했습니다. 브라우저 권한을 확인해주세요.";
-      errEl.classList.remove("hidden");
     }
   });
 }

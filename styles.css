@@ -297,24 +297,53 @@ select {
   min-height: 240px;
   padding: 40px;
   display: grid;
-  place-items: center;
-  background: #2A2A2A;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: stretch;
+  background: #2a2a2a;
   border-radius: 20px;
   overflow: hidden;
   font-weight: 400;
 }
 
-.preview-area img {
+.lottie-mount-host {
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.lottie-mount-host svg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.preview-area > img {
+  place-self: center;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-.preview-iframe {
+.preview-area > .preview-iframe {
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
   border: 0;
   display: block;
+}
+
+.preview-area > .preview-error {
+  place-self: center;
+  margin: 0;
 }
 
 .preview-error {
@@ -387,16 +416,16 @@ select {
 }
 
 .color-edit-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .color-edit-dialog-surface {
   position: relative;
   box-sizing: border-box;
-  min-width: 500px;
+  min-width: 400px;
   width: min(
     calc(100vw - 2rem),
-    max(500px, calc(60px + max(240px, calc(68px * var(--color-count, 1) - 8px))))
+    max(400px, calc(60px + max(240px, calc(68px * var(--color-count, 1) - 8px))))
   );
   padding: 40px 30px;
   border-radius: 20px;
@@ -527,9 +556,12 @@ select {
   background: #fff;
 }
 
-.color-edit-dialog-preview-area canvas {
+.color-edit-dialog-preview-area svg {
+  width: auto;
+  height: auto;
   max-width: 100%;
   max-height: 100%;
+  display: block;
 }
 
 .color-edit-filename {
@@ -616,6 +648,22 @@ select {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+}
+
+.color-edit-figma-hint {
+  margin: 0;
+  max-width: 22rem;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+}
+
+.color-edit-figma-hint strong {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .color-edit-footer-buttons {
