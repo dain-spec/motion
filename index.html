@@ -21,7 +21,7 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
       crossorigin
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=1779072114" />
   </head>
   <body>
     <header class="header">
@@ -71,25 +71,40 @@
         </button>
 
         <div class="color-edit-dialog-main">
+          <div class="color-edit-dialog-preview-section">
           <div class="color-edit-toggle-row">
-            <span class="color-edit-toggle-label" id="colorEditThemeLabel">Dark</span>
+            <span class="color-edit-toggle-label" id="colorEditThemeLabel">mode</span>
             <button
               type="button"
-              class="color-edit-theme-switch"
+              class="color-edit-theme-switch is-dark-mode"
               id="colorEditThemeToggle"
               role="switch"
               aria-checked="true"
               aria-labelledby="colorEditThemeLabel"
             >
-              <span class="color-edit-theme-switch-track" aria-hidden="true">
-                <span class="color-edit-theme-switch-thumb"></span>
-              </span>
+              <img
+                class="color-edit-theme-switch-icon color-edit-theme-switch-icon--dark"
+                src="./assets/ic_toggle_mode_dark.svg"
+                alt=""
+                width="40"
+                height="20"
+                aria-hidden="true"
+              />
+              <img
+                class="color-edit-theme-switch-icon color-edit-theme-switch-icon--light"
+                src="./assets/ic_toggle_mode_light.svg"
+                alt=""
+                width="40"
+                height="20"
+                aria-hidden="true"
+              />
             </button>
           </div>
 
           <div class="color-edit-preview-stack">
             <div id="colorEditDialogPreview" class="color-edit-dialog-preview-area"></div>
             <p id="colorEditFileName" class="color-edit-filename"></p>
+          </div>
           </div>
 
           <div id="colorEditFields" class="color-edit-swatch-row" role="group" aria-label="색상"></div>
@@ -105,26 +120,15 @@
               JSON 다운로드
             </button>
           </div>
-          <p class="color-edit-figma-hint">
-            Lottie JSON은 Figma에 붙여넣어도 벡터 도형으로 변환되지 않습니다. 아래 버튼은 다이얼로그 미리보기와 동일한
-            <strong>SVG 마크업</strong>을 클립보드에 넣으며, Figma·OS에 따라 한 번에 벡터로 붙여넣기 될 수 있습니다.
-          </p>
           <button type="button" class="color-edit-figma-copy" id="colorEditCopyFigma">
-            <svg
+            <img
               class="color-edit-figma-icon"
+              src="./assets/ic_figma.svg"
+              alt=""
               width="16"
               height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-            >
-              <path d="M5.33 10.67a2.33 2.33 0 0 1-2.33-2.34V5.67a2.33 2.33 0 0 1 2.33-2.34h2.34v7.34H5.33z" fill="#0ACF83" />
-              <path d="M5.33 3.33h2.34v4.67H5.33a2.33 2.33 0 1 1 0-4.67z" fill="#A259FF" />
-              <path d="M10.67 8H7.67V3.33h3a2.33 2.33 0 0 1 0 4.67z" fill="#1ABCFE" />
-              <path d="M10.67 8a2.33 2.33 0 1 1 0 4.67A2.33 2.33 0 0 1 10.67 8z" fill="#1ABCFE" />
-              <path d="M7.67 8h3v4.67h-3A2.33 2.33 0 0 1 7.67 8z" fill="#F24E1E" />
-            </svg>
+            />
             <span id="colorEditCopyFigmaLabel">Copy to Figma</span>
           </button>
         </div>

@@ -619,7 +619,7 @@ function buildColorEditFieldRows(groups) {
 
     const caption = document.createElement("p");
     caption.className = "color-edit-swatch-caption";
-    caption.textContent = `Color ${index + 1}`;
+    caption.textContent = `Color${index + 1}`;
 
     input.addEventListener("input", () => {
       applyHexToGroup(Number(input.dataset.groupIndex), input.value);
@@ -718,15 +718,21 @@ async function copyColorEditDialogSvgForFigma() {
   }
 }
 
-function resetColorEditDialogTheme() {
+function setColorEditDialogTheme(darkMode) {
   const themeToggle = document.getElementById("colorEditThemeToggle");
   const prevArea = document.getElementById("colorEditDialogPreview");
-  if (themeToggle) {
-    themeToggle.setAttribute("aria-checked", "true");
+  if (!themeToggle) {
+    return;
   }
+  themeToggle.setAttribute("aria-checked", darkMode ? "true" : "false");
+  themeToggle.classList.toggle("is-dark-mode", darkMode);
   if (prevArea) {
-    prevArea.classList.remove("is-preview-light");
+    prevArea.classList.toggle("is-preview-light", !darkMode);
   }
+}
+
+function resetColorEditDialogTheme() {
+  setColorEditDialogTheme(true);
 }
 
 async function openColorEditDialog(asset, previewEl) {
@@ -801,12 +807,13 @@ function initColorEditDialog() {
     colorEditState = null;
   });
 
-  themeToggle.addEventListener("click", () => {
-    const darkOn = themeToggle.getAttribute("aria-checked") === "true";
-    const nextDarkOn = !darkOn;
-    themeToggle.setAttribute("aria-checked", nextDarkOn ? "true" : "false");
-    dialogPreview.classList.toggle("is-preview-light", !nextDarkOn);
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      const darkOn = themeToggle.getAttribute("aria-checked") === "true";
+      setColorEditDialogTheme(!darkOn);
+    });
+  }
 
   const cancelBtn = document.getElementById("colorEditCancel");
   cancelBtn.addEventListener("click", () => {
