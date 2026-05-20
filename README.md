@@ -69,14 +69,46 @@ asset-share-site/
 - 권장 용량: 개별 파일 10MB 이하
 - 손상 파일 업로드 금지 (브라우저 미리보기 실패 방지)
 
-## 6) GitHub 설정 (Private 저장소)
+## 6) Vercel 배포
+
+빌드 단계 없이 정적 파일을 그대로 배포합니다.
+
+### 대시보드에서 연결 (권장)
+
+1. [vercel.com](https://vercel.com) 로그인 후 **Add New → Project**
+2. GitHub 저장소 `dain-spec/motion` import
+3. 프로젝트 설정 확인
+   - **Framework Preset**: Other
+   - **Build Command**: (비움)
+   - **Output Directory**: `.` (루트)
+4. **Deploy** 클릭
+
+`main` 브랜치에 push할 때마다 자동으로 재배포됩니다.
+
+### CLI로 배포
+
+```bash
+npm i -g vercel
+cd asset-share-site
+vercel          # 최초: 로그인 및 프로젝트 연결
+vercel --prod   # 프로덕션 배포
+```
+
+### 참고
+
+- 루트의 `vercel.json`은 `assets/` 경로에 캐시 헤더를 설정합니다.
+- GitHub Pages와 병행해도 됩니다. Vercel URL은 대시보드의 **Domains**에서 확인합니다.
+
+## 7) GitHub Pages (선택)
 
 1. 저장소를 `Private`로 생성
 2. 이 디렉터리 내용을 루트에 커밋
 3. `Settings > Pages`에서 `GitHub Actions`를 소스로 선택
 4. 팀원에게 저장소 접근 권한 부여
 
-## 7) 배포 체크리스트
+`.github/workflows/deploy-pages.yml`이 `main` push 시 Pages에 배포합니다.
+
+## 8) 배포 체크리스트
 
 - `assets/index.json` 문법 오류 없음
 - 새 에셋이 카드 목록에 표시됨
@@ -85,7 +117,7 @@ asset-share-site/
 - 모바일/데스크톱에서 레이아웃 정상
 - PR 머지 후 Pages URL에서 최신 항목 확인
 
-## 8) PR 체크리스트 (권장)
+## 9) PR 체크리스트 (권장)
 
 - 파일 추가 + `assets/index.json` 동시 수정
 - `type`/`path`/`updatedAt` 값 확인
